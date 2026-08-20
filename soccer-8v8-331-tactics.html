@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8人制サッカー 3-3-1 フォーメーション戦術ガイド</title>
+  <style>
+    :root {
+      --pitch-green: #2d6a3f;
+      --pitch-dark: #245a34;
+      --line-white: rgba(255,255,255,0.85);
+      --accent: #e63946;
+      --accent-blue: #1d4ed8;
+      --accent-yellow: #f59e0b;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e3a5f 0%, var(--pitch-green) 100%);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    header h1 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: rgba(255,255,255,0.85);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    nav {
+      background: var(--card);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--accent-yellow); }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent-yellow);
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      color: #60a5fa;
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    h4 {
+      font-size: 1rem;
+      color: var(--muted);
+      margin: 1rem 0 0.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .tag.blue { background: var(--accent-blue); }
+    .tag.yellow { background: var(--accent-yellow); color: #1e293b; }
+    .tag.green { background: var(--pitch-green); }
+
+    ul, ol {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    li { margin-bottom: 0.4rem; }
+
+    .pitch-container {
+      background: var(--pitch-green);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1rem 0;
+      border: 2px solid var(--border);
+    }
+
+    .pitch {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2/3;
+      max-width: 400px;
+      margin: 0 auto;
+      background: repeating-linear-gradient(
+        0deg,
+        var(--pitch-green),
+        var(--pitch-green) 10%,
+        var(--pitch-dark) 10%,
+        var(--pitch-dark) 20%
+      );
+    }
+
+    .pitch::before {
+      content: "";
+      position: absolute;
+      inset: 5%;
+      border: 2px solid var(--line-white);
+    }
+
+    .pitch::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      right: 5%;
+      height: 2px;
+      background: var(--line-white);
+    }
+
+    .center-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20%;
+      height: 13.3%;
+      border: 2px solid var(--line-white);
+      border-radius: 50%;
+    }
+
+    .penalty-area {
+      position: absolute;
+      left: 20%;
+      right: 20%;
+      height: 18%;
+      border: 2px solid var(--line-white);
+    }
+
+    .penalty-area.top { top: 5%; border-top: none; }
+    .penalty-area.bottom { bottom: 5%; border-bottom: none; }
+
+    .player {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: bold;
+      transform: translate(-50%, -50%);
+      border: 2px solid white;
+      z-index: 10;
+    }
+
+    .player.gk { background: #f59e0b; color: #1e293b; }
+    .player.def { background: #3b82f6; color: white; }
+    .player.mid { background: #10b981; color: white; }
+    .player.fwd { background: #ef4444; color: white; }
+    .player.opp { background: #64748b; color: white; opacity: 0.7; }
+
+    .arrow {
+      position: absolute;
+      z-index: 5;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .legend-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid white;
+    }
+
+    .pattern-box {
+      background: #0f172a;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 0.75rem 0;
+    }
+
+    .step-list {
+      counter-reset: step;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .step-list li {
+      counter-increment: step;
+      padding: 0.75rem 0 0.75rem 3rem;
+      position: relative;
+      border-left: 2px solid var(--border);
+      margin-left: 1rem;
+    }
+
+    .step-list li::before {
+      content: counter(step);
+      position: absolute;
+      left: -1rem;
+      top: 0.65rem;
+      width: 2rem;
+      height: 2rem;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    .comparison-table th {
+      background: #0f172a;
+      color: var(--accent-yellow);
+    }
+
+    .comparison-table tr:nth-child(even) {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .highlight {
+      background: rgba(230, 57, 70, 0.15);
+      border-left: 3px solid var(--accent);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .two-col { grid-template-columns: 1fr; }
+      main { padding: 1rem; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    svg.tactical-svg {
+      width: 100%;
+      max-width: 450px;
+      display: block;
+      margin: 1rem auto;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚽ 8人制サッカー 3-3-1 フォーメーション<br>戦術完全ガイド</h1>
+  <p>Jリーグ・強豪チームの考え方を8人制に落とし込んだ、攻め・守り・セットプレー・実践パターン集</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#overview">概要</a></li>
+    <li><a href="#formation">フォーメーション</a></li>
+    <li><a href="#attack">攻め方</a></li>
+    <li><a href="#defense">守り方</a></li>
+    <li><a href="#patterns">攻撃パターン</a></li>
+    <li><a href="#templates">攻撃テンプレート</a></li>
+    <li><a href="#setpiece">セットプレー</a></li>
+    <li><a href="#training">練習メニュー</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- ===== 概要 ===== -->
+<section id="overview">
+  <h2>📋 8人制 3-3-1 とは</h2>
+  <div class="card">
+    <p>8人制サッカーは通常 <strong>GK + フィールド7人</strong> で行われます。3-3-1は<strong>バランス型</strong>の定番フォーメーションで、Jリーグの4-2-3-1や3-4-2-1の考え方を8人制に縮小した形と言えます。</p>
+    <br>
+    <p>川崎フロンターレの「位置取りサッカー」、横浜F・マリノスの「ハイプレス＋サイド攻撃」、ヴィッセル神戸の「3バック＋インサイドハーフ」——これら強豪の共通点は<strong>「幅を使い、中央を人数で支配し、前線1人に決定力を集中させる」</strong>ことです。8人制3-3-1でも同じ原則が使えます。</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>8人制の特徴</h3>
+      <ul>
+        <li>ピッチが狭い → 1タッチ・2タッチの速いパスが効く</li>
+        <li>人数が少ない → 1人の空きが大きなチャンスになる</li>
+        <li>全員が攻撃にも守備にも関与する「トータルサッカー」的要素が強い</li>
+        <li>サイドの使い方が勝敗を左右する</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>3-3-1の強み</h3>
+      <ul>
+        <li>中盤3人で人数優位を作りやすい</li>
+        <li>守備時は5-2-0に変化し、ブロックが組みやすい</li>
+        <li>サイドバック（WB）が攻撃の幅を提供</li>
+        <li>FW1人に集中供給 → 決定力のある選手を活かせる</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== フォーメーション ===== -->
+<section id="formation">
+  <h2>🏟️ フォーメーションとポジション</h2>
+
+  <div class="two-col">
+    <div>
+      <div class="pitch-container">
+        <div class="pitch">
+          <div class="center-circle"></div>
+          <div class="penalty-area top"></div>
+          <div class="penalty-area bottom"></div>
+          <!-- GK -->
+          <div class="player gk" style="left:50%; top:92%;">GK</div>
+          <!-- DF -->
+          <div class="player def" style="left:20%; top:75%;">LB</div>
+          <div class="player def" style="left:50%; top:78%;">CB</div>
+          <div class="player def" style="left:80%; top:75%;">RB</div>
+          <!-- MF -->
+          <div class="player mid" style="left:25%; top:52%;">LM</div>
+          <div class="player mid" style="left:50%; top:48%;">CM</div>
+          <div class="player mid" style="left:75%; top:52%;">RM</div>
+          <!-- FW -->
+          <div class="player fwd" style="left:50%; top:22%;">ST</div>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#f59e0b;"></div>GK</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#3b82f6;"></div>DF（3人）</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#10b981;"></div>MF（3人）</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ef4444;"></div>FW（1人）</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h3>各ポジションの役割</h3>
+        <table class="comparison-table">
+          <tr><th>ポジ</th><th>主な役割</th><th>Jリーグ的参考</th></tr>
+          <tr>
+            <td><strong>GK</strong></td>
+            <td>ビルドアップの起点。足元での配球、コミュニケーション</td>
+            <td>権田修一型：積極的なフィールドプレーヤー</td>
+          </tr>
+          <tr>
+            <td><strong>CB</strong></td>
+            <td>最後の守備者。ボール保持、前線へのロングパス</td>
+            <td>板倉滉型：落ち着いたビルドアップ</td>
+          </tr>
+          <tr>
+            <td><strong>LB/RB</strong></td>
+            <td>守備の幅、攻撃時はオーバーラップ。クロス供給</td>
+            <td>マリノスSB型：積極的な幅攻撃</td>
+          </tr>
+          <tr>
+            <td><strong>CM</strong></td>
+            <td>試合の司令塔。攻守のハブ。スペースの創出</td>
+            <td>柴崎岳型：前線への供給、攻守の切替</td>
+          </tr>
+          <tr>
+            <td><strong>LM/RM</strong></td>
+            <td>サイドの1vs1、インサイドへのカット、DF支援</td>
+            <td>久保建英型：ドリブル＋パス</td>
+          </tr>
+          <tr>
+            <td><strong>ST</strong></td>
+            <td>ゴール前の支点。裏への走り、DFを引きつける</td>
+            <td>古橋亨梧型：動き＋決定力</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 攻め方 ===== -->
+<section id="attack">
+  <h2>⚔️ 攻め方 — Jリーグ強豪の考え方</h2>
+
+  <div class="card">
+    <h3>基本原則：「幅 → 深さ → 決定打」</h3>
+    <p>Jリーグ上位チームの攻撃は大きく3フェーズに分かれます。8人制でも同じ流れを意識しましょう。</p>
+    <ol class="step-list">
+      <li><strong>ビルドアップ（自陣〜中盤）</strong> — GK/CBからサイドまたはCMへ。相手プレスを避けつつ、中盤3人で人数優位を作る</li>
+      <li><strong>プログレス（中盤〜前線）</strong> — サイドへの展開、CMの前進、STの引きつけで相手DFラインを崩す</li>
+      <li><strong>フィニッシュ（最終三分の一）</strong> — クロス、スルーパス、シュート。ゴール前に人数を集中させる</li>
+    </ol>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="tag">川崎型</span>
+      <h3>位置取りサッカー（Possession）</h3>
+      <ul>
+        <li>ボールを持つ選手の<strong>近くに常に2〜3人</strong>がサポート</li>
+        <li>三角形のパスコースを常に確保</li>
+        <li>相手を引きつけてから<strong>弱いサイド</strong>へ素早く展開</li>
+        <li>焦らず、相手の形が崩れるまで保持</li>
+      </ul>
+      <div class="highlight">
+        <strong>8人制での使い方：</strong> CMがボールを持つ → LM/RMが左右に広がる → CB/LB/RBが後方サポート → 相手MFが寄せたら反対サイドへワンタッチで展開
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="tag blue">マリノス型</span>
+      <h3>ハイプレス＋速攻（Transition）</h3>
+      <ul>
+        <li>相手のビルドアップを<strong>前線から妨害</strong></li>
+        <li>奪取後は<strong>3秒以内</strong>に前線へ送る</li>
+        <li>ST＋LM/RMの3人でゴール前に人数を作る</li>
+        <li>サイドから中央へのカットイン、またはクロス</li>
+      </ul>
+      <div class="highlight">
+        <strong>8人制での使い方：</strong> 相手CBの横パスをST+CMがカット → 奪取即STへ → LM/RMが両サイドに走り込み → 2対1や1対1でゴール前
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="tag yellow">神戸型</span>
+      <h3>3バック＋インサイドハーフ</h3>
+      <ul>
+        <li>LM/RMが<strong>インサイドに入り</strong>、CMと中央で人数を作る</li>
+        <li>LB/RBが<strong>幅を取りに上がる</strong>（WB化）</li>
+        <li>中央3人（CM+LM+RM）で相手MFを上回る</li>
+        <li>STは相手CB2人を引きつけ、インサイドから供給</li>
+      </ul>
+      <div class="highlight">
+        <strong>8人制での使い方：</strong> LM/RMが中央寄りに入る → LB/RBが高い位置で幅 → CMがフリーのスペースで受ける → STへのスルーパス or シュート
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>攻撃時のポジション変化（3-3-1 → 2-3-2-1）</h3>
+    <p>ボールを持って前進するとき、フォーメーションは流動的に変化します。</p>
+    <ul>
+      <li><strong>LB/RB</strong> → ハイポジションで幅を提供（オーバーラップ）</li>
+      <li><strong>LM/RM</strong> → インサイドに入るか、サイドライン際で1vs1</li>
+      <li><strong>CM</strong> → ペナルティエリア前（ハーフスペース）で受ける</li>
+      <li><strong>CB</strong> → 後方でカバー（カウンター対策）</li>
+      <li><strong>ST</strong> → CBラインの裏 or 前で支点</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 守り方 ===== -->
+<section id="defense">
+  <h2>🛡️ 守り方 — 組織的ディフェンス</h2>
+
+  <div class="card">
+    <h3>守備の基本：5-2-0 ミッドブロック</h3>
+    <p>8人制3-3-1の守備形は <strong>5-2-0</strong>（DF3 + MF2、FW1は相手CBをマーク）が基本です。Jリーグでも主流の「ミッドブロック」を採用します。</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>守備原則 ①：ブロックの厚み</h3>
+      <ul>
+        <li>DFラインとMFラインの距離は <strong>10〜15m</strong> を目安</li>
+        <li>縦のラインを揃え、スルーパスの隙をなくす</li>
+        <li>CBは最後方に残り、LB/RBはサイドをカバー</li>
+        <li>相手ST1人に対してCB+CMで2対1を作る</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>守備原則 ②：プレスのタイミング</h3>
+      <ul>
+        <li><strong>高いプレス：</strong> 相手GK/CBの受けた瞬間にST+CMが寄せる（マリノス型）</li>
+        <li><strong>ミッドプレス：</strong> 中盤で待ち、横パスを誘ってから奪う（川崎型）</li>
+        <li><strong>ローブロック：</strong> ペナルティエリア前で人数を固める（神戸型）</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>守備原則 ③：奪取後の動き</h3>
+      <ul>
+        <li>奪ったら<strong>即座に前を向く</strong>（ターンオーバー）</li>
+        <li>ST+LM/RMが前線に走り込み開始</li>
+        <li>CMが最初のパスを出す「出口」になる</li>
+        <li>カウンターは3秒ルール：3秒以内に前線へ</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>守備原則 ④：セットプレー守備</h3>
+      <ul>
+        <li>FK：壁3人＋残り4人でゾーン（8人制は人数が少ないため壁を厚く）</li>
+        <li>CK：ニアポスト1人＋ファー2人＋残りはマーク</li>
+        <li>スローイン：ニア1人＋他はライン維持</li>
+        <li>ゴールキック：DFラインを上げてコンパクトに</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>守備時のポジション配置</h3>
+    <div class="pitch-container">
+      <div class="pitch">
+        <div class="center-circle"></div>
+        <div class="penalty-area top"></div>
+        <div class="penalty-area bottom"></div>
+        <!-- 相手 -->
+        <div class="player opp" style="left:50%; top:15%;">相ST</div>
+        <div class="player opp" style="left:30%; top:30%;">相MF</div>
+        <div class="player opp" style="left:70%; top:30%;">相MF</div>
+        <!-- 自チーム守備 -->
+        <div class="player gk" style="left:50%; top:92%;">GK</div>
+        <div class="player def" style="left:20%; top:72%;">LB</div>
+        <div class="player def" style="left:50%; top:75%;">CB</div>
+        <div class="player def" style="left:80%; top:72%;">RB</div>
+        <div class="player mid" style="left:35%; top:55%;">LM</div>
+        <div class="player mid" style="left:65%; top:55%;">RM</div>
+        <div class="player fwd" style="left:50%; top:40%;">ST</div>
+        <div class="player mid" style="left:50%; top:58%;">CM</div>
+      </div>
+    </div>
+    <p style="text-align:center; color:var(--muted); font-size:0.85rem; margin-top:0.5rem;">
+      守備時：STが相手CBをマーク、CM+LM/RMが中盤ブロック、DF3が最終ライン
+    </p>
+  </div>
+</section>
+
+<!-- ===== 攻撃パターン ===== -->
+<section id="patterns">
+  <h2>🎯 実践攻撃パターン（5選）</h2>
+  <p style="margin-bottom:1.5rem; color:var(--muted);">実際の試合で使える具体的な攻撃の流れです。練習で繰り返し、試合で使えるようにしましょう。</p>
+
+  <!-- パターン1 -->
+  <div class="card">
+    <span class="tag">パターン1</span><span class="tag green">サイドオーバーラップ</span>
+    <h3>サイド展開 → オーバーラップ → クロス</h3>
+    <p><strong>参考：</strong> 横浜F・マリノスの定番サイド攻撃</p>
+
+    <svg class="tactical-svg" viewBox="0 0 300 450" xmlns="http://www.w3.org/2000/svg">
+      <rect width="300" height="450" fill="#2d6a3f" rx="8"/>
+      <rect x="15" y="15" width="270" height="420" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+      <line x1="15" y1="225" x2="285" y2="225" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+      <circle cx="150" cy="225" r="30" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+      <!-- 選手 -->
+      <circle cx="150" cy="400" r="12" fill="#f59e0b" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="404" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">GK</text>
+      <circle cx="80" cy="340" r="12" fill="#3b82f6" stroke="white" stroke-width="1.5"/>
+      <text x="80" y="344" text-anchor="middle" fill="white" font-size="7" font-weight="bold">LB</text>
+      <circle cx="150" cy="350" r="12" fill="#3b82f6" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="354" text-anchor="middle" fill="white" font-size="7" font-weight="bold">CB</text>
+      <circle cx="220" cy="340" r="12" fill="#3b82f6" stroke="white" stroke-width="1.5"/>
+      <text x="220" y="344" text-anchor="middle" fill="white" font-size="7" font-weight="bold">RB</text>
+      <circle cx="60" cy="240" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/>
+      <text x="60" y="244" text-anchor="middle" fill="white" font-size="7" font-weight="bold">LM</text>
+      <circle cx="150" cy="230" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="234" text-anchor="middle" fill="white" font-size="7" font-weight="bold">CM</text>
+      <circle cx="240" cy="240" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/>
+      <text x="240" y="244" text-anchor="middle" fill="white" font-size="7" font-weight="bold">RM</text>
+      <circle cx="150" cy="100" r="12" fill="#ef4444" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="104" text-anchor="middle" fill="white" font-size="7" font-weight="bold">ST</text>
+      <!-- 矢印 -->
+      <defs>
+        <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#f59e0b"/>
+        </marker>
+      </defs>
+      <line x1="150" y1="230" x2="60" y2="240" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <line x1="60" y1="240" x2="60" y2="160" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <line x1="80" y1="340" x2="40" y2="150" stroke="#60a5fa" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowhead)"/>
+      <line x1="40" y1="150" x2="150" y2="100" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <text x="100" y="200" fill="#f59e0b" font-size="9">①CM→LM</text>
+      <text x="30" y="130" fill="#60a5fa" font-size="9">②LB↑</text>
+      <text x="100" y="80" fill="#ef4444" font-size="9">③クロス→ST</text>
+    </svg>
+
+    <ol class="step-list">
+      <li>CMがボールを持ち、左サイドのLMへパス（相手MFの注意を左に引く）</li>
+      <li>LMがサイドライン際でボールを保持。同時にLBが<strong>オーバーラップ</strong>で前に上がる</li>
+      <li>LMはLBへパス、または1vs1で相手DFを抜く</li>
+      <li>LB（またはLM）がゴール前へ<strong>クロス</strong>。STがニアポスト、CMがファーポストへ走り込む</li>
+    </ol>
+    <div class="highlight"><strong>ポイント：</strong> LBのオーバーラップが鍵。LMがボールを持つ間にLBが走り込むタイミングを合わせる。RM/CMはファーポストカバー。</div>
+  </div>
+
+  <!-- パターン2 -->
+  <div class="card">
+    <span class="tag">パターン2</span><span class="tag blue">中央突破</span>
+    <h3>ST引きつけ → CM前進 → スルーパス</h3>
+    <p><strong>参考：</strong> 川崎フロンターレの中央突破</p>
+
+    <svg class="tactical-svg" viewBox="0 0 300 450" xmlns="http://www.w3.org/2000/svg">
+      <rect width="300" height="450" fill="#2d6a3f" rx="8"/>
+      <rect x="15" y="15" width="270" height="420" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+      <line x1="15" y1="225" x2="285" y2="225" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+      <circle cx="150" cy="400" r="12" fill="#f59e0b" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="404" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">GK</text>
+      <circle cx="80" cy="340" r="12" fill="#3b82f6" stroke="white" stroke-width="1.5"/>
+      <text x="80" y="344" text-anchor="middle" fill="white" font-size="7" font-weight="bold">LB</text>
+      <circle cx="150" cy="350" r="12" fill="#3b82f6" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="354" text-anchor="middle" fill="white" font-size="7" font-weight="bold">CB</text>
+      <circle cx="220" cy="340" r="12" fill="#3b82f6" stroke="white" stroke-width="1.5"/>
+      <text x="220" y="344" text-anchor="middle" fill="white" font-size="7" font-weight="bold">RB</text>
+      <circle cx="60" cy="240" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/>
+      <text x="60" y="244" text-anchor="middle" fill="white" font-size="7" font-weight="bold">LM</text>
+      <circle cx="150" cy="200" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="204" text-anchor="middle" fill="white" font-size="7" font-weight="bold">CM</text>
+      <circle cx="240" cy="240" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/>
+      <text x="240" y="244" text-anchor="middle" fill="white" font-size="7" font-weight="bold">RM</text>
+      <circle cx="150" cy="120" r="12" fill="#ef4444" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="124" text-anchor="middle" fill="white" font-size="7" font-weight="bold">ST</text>
+      <line x1="150" y1="120" x2="150" y2="80" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <line x1="150" y1="350" x2="150" y2="200" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <line x1="150" y1="200" x2="150" y2="130" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <text x="170" y="170" fill="#f59e0b" font-size="9">CM前進</text>
+      <text x="170" y="100" fill="#ef4444" font-size="9">ST裏走り</text>
+    </svg>
+
+    <ol class="step-list">
+      <li>CBからCMへパス。STは<strong>下がって</strong>相手CBを引きつける（ドロップ）</li>
+      <li>STが相手CB2人の注意を引いた隙に、CMが<strong>ドリブルまたはパス</strong>で前進</li>
+      <li>STが一気に<strong>裏へ走り込み</strong>（オフサイドラインの裏）</li>
+      <li>CMからSTへ<strong>スルーパス</strong> → 1対1 with GK → シュート</li>
+    </ol>
+    <div class="highlight"><strong>ポイント：</strong> STの「下がってから走る」動きが最重要。相手CBを1人引きつければ、CM前進のスペースが生まれる。</div>
+  </div>
+
+  <!-- パターン3 -->
+  <div class="card">
+    <span class="tag">パターン3</span><span class="tag yellow">カウンター</span>
+    <h3>奪取 → 即展開 → 3対2速攻</h3>
+    <p><strong>参考：</strong> 横浜F・マリノスの速攻（アンチ・プレス）</p>
+
+    <ol class="step-list">
+      <li>中盤でCMまたはLM/RMが相手から<strong>ボール奪取</strong></li>
+      <li>奪取した選手は<strong>即座に前を向く</strong>（ターンオーバー）。3秒以内にパス</li>
+      <li>ST＋LM＋RMの<strong>3人が前線へ</strong>走り込み（トランジション）</li>
+      <li>相手DFは2人しか戻れていない → <strong>3対2</strong>の数的優位</li>
+      <li>ボール保持者がSTへ送る → STが<strong>LM or RM</strong>へ横パス → ゴール前で2対1</li>
+    </ol>
+    <div class="highlight"><strong>ポイント：</strong> 「奪った瞬間」が勝負。ためらうと相手が戻る。STは中央、LM/RMは両サイドに広がる。</div>
+  </div>
+
+  <!-- パターン4 -->
+  <div class="card">
+    <span class="tag">パターン4</span><span class="tag green">インサイドカット</span>
+    <h3>LM/RMインサイド → ハーフスペース → シュート</h3>
+    <p><strong>参考：</strong> ヴィッセル神戸のインサイドハーフ戦術</p>
+
+    <ol class="step-list">
+      <li>LM/RMがサイドではなく<strong>中央寄り（ハーフスペース）</strong>でボールを受ける</li>
+      <li>LB/RBがサイドライン際まで上がり、幅を提供</li>
+      <li>LM/RMが<strong>インサイドにカット</strong>し、DFラインの間を突破</li>
+      <li>STが相手CBを引きつけ、LM/RMが<strong>フットワークで1vs1</strong></li>
+      <li>ペナルティエリア前で<strong>シュート</strong> or STへのパス</li>
+    </ol>
+    <div class="highlight"><strong>ポイント：</strong> 8人制はゴールまでの距離が短い。ハーフスペースからのシュートは非常に有効。LM/RMの技術力が問われる。</div>
+  </div>
+
+  <!-- パターン5 -->
+  <div class="card">
+    <span class="tag">パターン5</span><span class="tag blue">スイッチ</span>
+    <h3>密集 → 反対サイドへスイッチ → 1vs1</h3>
+    <p><strong>参考：</strong> 川崎フロンターレのサイドチェンジ</p>
+
+    <ol class="step-list">
+      <li>左サイド（LM+LB）にボールを集中させ、<strong>相手MF/DFを左に引き寄せる</strong></li>
+      <li>CMまたはCBから<strong>ロングパスで右サイド</strong>（RM）へ一気にスイッチ</li>
+      <li>RMが相手DF1人との<strong>1vs1</strong>局面を作る</li>
+      <li>RMがドリブルで突破 → ゴール前へクロス or シュート</li>
+      <li>ST＋CMがゴール前で走り込み</li>
+    </ol>
+    <div class="highlight"><strong>ポイント：</strong> 8人制はピッチが狭いので、スイッチのタイミングが早いほど効果的。CBから直接RMへ送る勇気も必要。</div>
+  </div>
+</section>
+
+<!-- ===== 攻撃テンプレート ===== -->
+<section id="templates">
+  <h2>📝 攻撃テンプレート — 試合前チェックリスト</h2>
+  <p style="margin-bottom:1.5rem; color:var(--muted);">試合前にチーム全員で確認する「攻め方の型」です。状況に応じて使い分けましょう。</p>
+
+  <div class="card">
+    <h3>テンプレート A：支配型（相手より上手いチーム向け）</h3>
+    <table class="comparison-table">
+      <tr><th>局面</th><th>やること</th><th>担当</th></tr>
+      <tr><td>GKから</td><td>CBへ。相手ST1人なので余裕を持って</td><td>GK → CB</td></tr>
+      <tr><td>自陣ビルド</td><td>LB/RBへ展開。三角形を作る</td><td>CB → LB/RB → CM</td></tr>
+      <tr><td>中盤</td><td>保持。相手が寄せたら反対サイドへ</td><td>CM → LM/RM</td></tr>
+      <tr><td>前線</td><td>サイドオーバーラップ or インサイドカット</td><td>LM/RM + LB/RB</td></tr>
+      <tr><td>決定打</td><td>クロス or スルーパス → ST</td><td>ST + CM</td></tr>
+    </table>
+    <p><strong>守備：</strong> ハイプレス。相手ビルドアップを妨害 → 奪取即攻撃</p>
+  </div>
+
+  <div class="card">
+    <h3>テンプレート B：カウンター型（相手より速い・守備的チーム向け）</h3>
+    <table class="comparison-table">
+      <tr><th>局面</th><th>やること</th><th>担当</th></tr>
+      <tr><td>GKから</td><td>ロングパスでST or サイドへ。無理にビルドしない</td><td>GK → ST/LM/RM</td></tr>
+      <tr><td>自陣</td><td>5-2-0でブロック。相手の攻撃を止める</td><td>全員</td></tr>
+      <tr><td>奪取時</td><td>3秒以内に前線へ。ST+LM+RM走り込み</td><td>CM → ST/LM/RM</td></tr>
+      <tr><td>前線</td><td>3対2 or 2対1。素早くゴール前</td><td>ST + LM/RM</td></tr>
+      <tr><td>決定打</td><td>STのシュート or 横パス → トゥータッチ</td><td>ST → LM/RM</td></tr>
+    </table>
+    <p><strong>守備：</strong> ローブロック。ペナルティエリア前で人数を固める</p>
+  </div>
+
+  <div class="card">
+    <h3>テンプレート C：バランス型（万能・初めてのチーム向け）</h3>
+    <table class="comparison-table">
+      <tr><th>局面</th><th>やること</th><th>担当</th></tr>
+      <tr><td>GKから</td><td>CBへ。CBが状況を見てサイド or 中央</td><td>GK → CB → CM/LB/RB</td></tr>
+      <tr><td>自陣</td><td>無理しない。パスコースがなければキック</td><td>CB/GK</td></tr>
+      <tr><td>中盤</td><td>LM/RMに展開。1vs1を作る</td><td>CM → LM/RM</td></tr>
+      <tr><td>前線</td><td>サイドからクロス or 中央突破</td><td>LM/RM + ST</td></tr>
+      <tr><td>決定打</td><td>ゴール前に人数を送る（最低3人）</td><td>ST + CM + LM/RM</td></tr>
+    </table>
+    <p><strong>守備：</strong> ミッドブロック。中盤で奪ってから攻撃に切り替え</p>
+  </div>
+
+  <div class="card">
+    <h3>🔄 状況別 攻め方の切り替え</h3>
+    <table class="comparison-table">
+      <tr><th>状況</th><th>推奨テンプレート</th><th>理由</th></tr>
+      <tr><td>リードしている</td><td>B（カウンター型）</td><td>守備を固め、カウンターで2点目</td></tr>
+      <tr><td>ビハインド</td><td>A（支配型）</td><td>ボールを保持し、相手を引き出す</td></tr>
+      <tr><td>同点・前半</td><td>C（バランス型）</td><td>相手を見て柔軟に対応</td></tr>
+      <tr><td>相手が守備的</td><td>A（支配型）</td><td>引き出してから攻める</td></tr>
+      <tr><td>相手が攻撃的</td><td>B（カウンター型）</td><td>裏スペースを突く</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ===== セットプレー ===== -->
+<section id="setpiece">
+  <h2>🎯 セットプレー</h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>コーナーキック（CK）攻撃</h3>
+      <h4>パターンA：ニアファー</h4>
+      <ul>
+        <li><strong>蹴る：</strong> LM or RM</li>
+        <li><strong>ニア：</strong> ST（ヘディング or フリック）</li>
+        <li><strong>ファー：</strong> CB（ヘディング）</li>
+        <li><strong>外：</strong> CM（2ndボール）</li>
+      </ul>
+      <h4>パターンB：ショートCK</h4>
+      <ul>
+        <li>CKをショートパス → 1vs1 or 2vs1を作る</li>
+        <li>8人制はゴールまで近いので有効</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>フリーキック（FK）攻撃</h3>
+      <h4>直接FK</h4>
+      <ul>
+        <li>ゴールから18m以内 → シュート</li>
+        <li>壁の上を越える or 壁の隙間を狙う</li>
+      </ul>
+      <h4>間接FK</h4>
+      <ul>
+        <li>LM/RMが蹴り、ST+CBがゴール前</li>
+        <li>8人制は人数が少ない → 全員ゴール前に入ってもOK</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>ゴールキック</h3>
+      <ul>
+        <li><strong>ショート：</strong> CBへ。ビルドアップ開始（支配型）</li>
+        <li><strong>ロング：</strong> ST or サイドへ直接（カウンター型）</li>
+        <li>8人制はGKのパス精度が試合を左右する</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>スローイン</h3>
+      <ul>
+        <li>相手ゴール側 → ST+CMをゴール前に。ロングスロー</li>
+        <li>自陣サイド → CB/CBへ。保持してビルド</li>
+        <li>8人制はスローインの距離が長い → 武器にできる</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 練習メニュー ===== -->
+<section id="training">
+  <h2>🏃 練習メニュー</h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>パス＆ムーブ（15分）</h3>
+      <ul>
+        <li>3人三角パス → 8人制の基本</li>
+        <li>1タッチ・2タッチの切替</li>
+        <li>「パス → 走る → 受ける」の繰り返し</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>サイドオーバーラップ（15分）</h3>
+      <ul>
+        <li>LM+LBの2対1ドリル</li>
+        <li>オーバーラップのタイミング合わせ</li>
+        <li>クロス → STのヘディング/ボレー</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>3対2 カウンター（15分）</h3>
+      <ul>
+        <li>中盤で奪取 → 3人で前線へ</li>
+        <li>3秒ルールを徹底</li>
+        <li>ST+LM+RMの走り方を統一</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>5対5 ゲーム形式（20分）</h3>
+      <ul>
+        <li>実際の3-3-1（GK除く）で対戦</li>
+        <li>テンプレートA/B/Cを交代で試す</li>
+        <li>試合後に振り返り（5分）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>試合前ミーティング（5分で確認）</h3>
+    <ol>
+      <li>今日のテンプレートは A / B / C のどれか？</li>
+      <li>セットプレーの担当確認（CK/FK蹴り手、ニア/ファー）</li>
+      <li>守備のライン：ハイ / ミドル / ロー のどれか？</li>
+      <li>STの動き：下がる？裏走る？両方？</li>
+      <li>声出し：GKとCBが最後方から指示</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>8人制サッカー 3-3-1 フォーメーション戦術ガイド</p>
+  <p>Jリーグ・強豪チームの戦術思想を8人制に応用 | 2026</p>
+</footer>
+
+</body>
+</html>

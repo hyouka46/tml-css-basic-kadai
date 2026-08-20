@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-3-1 戦術ガイド｜8人制サッカー</title>
+  <style>
+    :root {
+      --grass-dark: #1a6b38;
+      --grass-light: #248a48;
+      --line: rgba(255, 255, 255, 0.88);
+      --ink: #152018;
+      --paper: #f3f5f1;
+      --card: #ffffff;
+      --red: #c53d32;
+      --blue: #1f5a9a;
+      --gold: #c9a227;
+      --navy: #13293d;
+      --muted: #5a6b5e;
+      --accent: #0e7a5f;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, #e8efe8 0%, transparent 180px),
+        radial-gradient(ellipse at 85% 5%, #d4e8dc 0, transparent 40%),
+        var(--paper);
+      line-height: 1.75;
+    }
+
+    .wrap { max-width: 940px; margin: 0 auto; padding: 28px 16px 72px; }
+
+    header.hero {
+      background: linear-gradient(145deg, #0f3d28 0%, #1a6b38 48%, #0d5c52 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 36px 32px;
+      box-shadow: 0 12px 36px rgba(15, 61, 40, 0.28);
+      position: relative;
+      overflow: hidden;
+    }
+    header.hero::after {
+      content: "";
+      position: absolute;
+      right: -30px;
+      bottom: -40px;
+      width: 200px;
+      height: 200px;
+      border: 14px solid rgba(255,255,255,.1);
+      border-radius: 50%;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,.14);
+      color: #f0f7f2;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      letter-spacing: .06em;
+      border: 1px solid rgba(255,255,255,.22);
+    }
+    h1 {
+      margin: 14px 0 10px;
+      font-size: clamp(26px, 4.5vw, 38px);
+      line-height: 1.3;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .lead { margin: 0; font-size: 15.5px; opacity: .94; max-width: 40em; }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 22px 0 28px;
+    }
+    nav a {
+      text-decoration: none;
+      background: #fff;
+      color: var(--navy);
+      border: 1px solid #cfdcd2;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    nav a:hover { background: #e8f3ec; border-color: #9fc0ad; }
+
+    h2 {
+      font-size: 22px;
+      margin: 0 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2 .num {
+      width: 32px; height: 32px;
+      border-radius: 6px;
+      background: var(--navy);
+      color: #fff;
+      display: grid; place-items: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    h3 { margin: 0 0 8px; font-size: 17px; color: var(--navy); }
+    h4 { margin: 14px 0 6px; font-size: 15px; color: var(--accent); }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 24px;
+      margin: 16px 0;
+      box-shadow: 0 6px 20px rgba(19, 41, 61, 0.06);
+      border: 1px solid #dde5df;
+    }
+    p { margin: 0 0 10px; }
+    ul, ol { margin: 8px 0 0; padding-left: 1.25em; }
+    li { margin: 6px 0; }
+    .muted { color: var(--muted); font-size: 14px; }
+
+    .field {
+      background: repeating-linear-gradient(
+        90deg,
+        var(--grass-dark) 0 28px,
+        var(--grass-light) 28px 56px
+      );
+      border-radius: 12px;
+      position: relative;
+      height: 420px;
+      margin: 16px 0 8px;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 8px #14532d;
+    }
+    .field.mini { height: 300px; }
+    .field.attack { height: 340px; }
+    .lines {
+      position: absolute; inset: 12px;
+      border: 2px solid var(--line);
+      border-radius: 6px;
+    }
+    .midline {
+      position: absolute; left: 12px; right: 12px; top: 50%;
+      height: 2px; background: var(--line);
+    }
+    .circle {
+      position: absolute; left: 50%; top: 50%;
+      width: 86px; height: 86px;
+      margin: -43px 0 0 -43px;
+      border: 2px solid var(--line);
+      border-radius: 50%;
+    }
+    .box {
+      position: absolute; left: 22%; right: 22%;
+      height: 58px;
+      border: 2px solid var(--line);
+    }
+    .box.top { top: 12px; border-top: 0; }
+    .box.bottom { bottom: 12px; border-bottom: 0; }
+
+    .player {
+      position: absolute;
+      width: 54px;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+    }
+    .dot {
+      width: 36px; height: 36px;
+      margin: 0 auto 4px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 11px;
+      box-shadow: 0 3px 0 rgba(0,0,0,.16);
+      border: 2px solid #fff;
+    }
+    .dot.gk { background: #d97706; color: #2a1c00; }
+    .dot.df { background: #1d4ed8; }
+    .dot.mf { background: #15803d; }
+    .dot.fw { background: #b91c1c; }
+    .dot.opp { background: #6b7280; }
+    .name {
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0,0,0,.65);
+      white-space: nowrap;
+    }
+
+    .legend {
+      display: flex; flex-wrap: wrap; gap: 10px 16px;
+      font-size: 13px; font-weight: 700; margin-top: 8px;
+    }
+    .legend span { display: flex; align-items: center; gap: 6px; }
+    .sw { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .grid3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 760px) {
+      .grid2, .grid3 { grid-template-columns: 1fr; }
+      .field { height: 380px; }
+      .field.attack { height: 320px; }
+    }
+
+    .tip, .ok, .ng, .step {
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-top: 12px;
+    }
+    .tip {
+      background: #f7f1de;
+      border-left: 4px solid var(--gold);
+      font-weight: 600;
+    }
+    .ok {
+      background: #e8f5ee;
+      border-left: 4px solid #15803d;
+    }
+    .ng {
+      background: #fceeed;
+      border-left: 4px solid #b91c1c;
+    }
+    .step {
+      background: #eef4f9;
+      border-left: 4px solid var(--blue);
+    }
+    .step ol { margin-top: 6px; }
+    .step li { margin: 4px 0; }
+
+    .template {
+      border: 1px solid #d5e0d8;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 14px 0;
+      background: #fafcfb;
+    }
+    .template-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px 12px;
+      margin-bottom: 8px;
+    }
+    .tag {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      background: var(--navy);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .tag.side { background: #0e7a5f; }
+    .tag.center { background: #b91c1c; }
+    .tag.counter { background: #c2410c; }
+    .tag.build { background: #1d4ed8; }
+
+    .arrow {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    table.roles {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    table.roles th, table.roles td {
+      border: 1px solid #d7e0d9;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    table.roles th {
+      background: #eef4f0;
+      color: var(--navy);
+      width: 22%;
+    }
+
+    footer {
+      text-align: center;
+      color: #4b6350;
+      font-size: 13px;
+      margin-top: 28px;
+    }
+
+    .print-btn {
+      margin-top: 16px;
+      background: #fff;
+      color: #0f3d28;
+      border: 0;
+      font-weight: 800;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    @media print {
+      nav, .print-btn { display: none; }
+      .card, header.hero { break-inside: avoid; box-shadow: none; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <span class="badge">8人制サッカー｜指導・試合用</span>
+      <h1>3－3－1<br>戦術ガイド</h1>
+      <p class="lead">配置・役割・守備原則に加え、<b>攻めのテンプレート</b>と<b>実際の攻撃手順</b>までまとめた実践用メモです。覚える型は少なく、試合中に再現できることを優先しています。</p>
+      <button class="print-btn" onclick="window.print()">このページを印刷する</button>
+    </header>
+
+    <nav>
+      <a href="#what">3-3-1の骨格</a>
+      <a href="#jobs">ポジション役割</a>
+      <a href="#templates">攻めテンプレート</a>
+      <a href="#howto">攻撃の進め方</a>
+      <a href="#defense">守り方</a>
+      <a href="#rules">試合の原則</a>
+    </nav>
+
+    <section id="what" class="card">
+      <h2><span class="num">1</span>3－3－1の骨格</h2>
+      <p>GKの前を <b>DF3・MF3・FW1</b> で組む形です。8人制ではバランスが取りやすく、幅（サイド）と厚み（中央）の両方を使いやすいのが利点です。</p>
+      <p class="muted">ポイントは「並びを固定すること」ではなく、ボール位置に合わせて形を保ったままスライドすることです。</p>
+
+      <div class="field" aria-label="3-3-1の並び">
+        <div class="lines"></div>
+        <div class="midline"></div>
+        <div class="circle"></div>
+        <div class="box top"></div>
+        <div class="box bottom"></div>
+
+        <div class="player" style="left:50%; top:10%;">
+          <div class="dot fw">FW</div>
+          <div class="name">トップ</div>
+        </div>
+        <div class="player" style="left:22%; top:32%;">
+          <div class="dot mf">左MF</div>
+          <div class="name">左サイド</div>
+        </div>
+        <div class="player" style="left:50%; top:36%;">
+          <div class="dot mf">中MF</div>
+          <div class="name">アンカー</div>
+        </div>
+        <div class="player" style="left:78%; top:32%;">
+          <div class="dot mf">右MF</div>
+          <div class="name">右サイド</div>
+        </div>
+        <div class="player" style="left:22%; top:62%;">
+          <div class="dot df">左DF</div>
+          <div class="name">左SB</div>
+        </div>
+        <div class="player" style="left:50%; top:68%;">
+          <div class="dot df">CB</div>
+          <div class="name">CB</div>
+        </div>
+        <div class="player" style="left:78%; top:62%;">
+          <div class="dot df">右DF</div>
+          <div class="name">右SB</div>
+        </div>
+        <div class="player" style="left:50%; top:90%;">
+          <div class="dot gk">GK</div>
+          <div class="name">GK</div>
+        </div>
+      </div>
+      <div class="legend">
+        <span><i class="sw" style="background:#b91c1c"></i>FW</span>
+        <span><i class="sw" style="background:#15803d"></i>MF</span>
+        <span><i class="sw" style="background:#1d4ed8"></i>DF</span>
+        <span><i class="sw" style="background:#d97706"></i>GK</span>
+      </div>
+    </section>
+
+    <section id="jobs" class="card">
+      <h2><span class="num">2</span>ポジションごとの仕事</h2>
+      <p>強いチームは、個人技以前に「誰が何をするか」が共有されています。</p>
+      <table class="roles">
+        <tr>
+          <th>トップ（FW）</th>
+          <td>受け所の確保、最終ライン背後への抜け、相手CBの引きつけ。失ったあとは第一プレッシャーの起点。</td>
+        </tr>
+        <tr>
+          <th>左右MF</th>
+          <td>幅を作る／内側へ切り込む／クロス・カットイン。守備時はハーフウェイ付近まで戻り、外側のコースを閉じる。</td>
+        </tr>
+        <tr>
+          <th>中MF（アンカー）</th>
+          <td>ビルドアップのハブ。左右・前方へ配球し、奪われた瞬間いちばん早く回収位置へ戻る。</td>
+        </tr>
+        <tr>
+          <th>DF3</th>
+          <td>ラインを崩さず横スライド。飛び出しはCBが判断。SBは攻撃参加時も内側にカバーを残す。</td>
+        </tr>
+        <tr>
+          <th>GK</th>
+          <td>最終ラインの管理。「右」「カバー」「ライン上げ」など、声でチームの距離感を整える。</td>
+        </tr>
+      </table>
+      <div class="tip">判断の基準は「ボールを持っている味方の近くに、常に2つの受け口があるか」。なければ動く。</div>
+    </section>
+
+    <section id="templates" class="card">
+      <h2><span class="num">3</span>攻め方テンプレート（4型）</h2>
+      <p>試合中に迷ったら、この4つから選ぶ。状況に応じて切り替えるだけで、攻撃の再現性が上がります。</p>
+
+      <div class="template">
+        <div class="template-head">
+          <span class="tag build">A</span>
+          <h3 style="margin:0;">ビルドアップ → 三角形で前進</h3>
+        </div>
+        <p><b>いつ使う：</b>相手が前から来ない／自分たちでリズムを作りたいとき。</p>
+        <p><b>形：</b>ボール保持者＋近くの2人で三角形。1パスしたら、受け手以外が次の受け所へ動く。</p>
+        <div class="field mini" aria-label="三角形のパス">
+          <div class="lines"></div>
+          <div class="midline"></div>
+          <div class="circle"></div>
+          <div class="player" style="left:50%; top:18%;">
+            <div class="dot fw">FW</div>
+            <div class="name">3人目</div>
+          </div>
+          <div class="player" style="left:32%; top:42%;">
+            <div class="dot mf">MF</div>
+            <div class="name">支え</div>
+          </div>
+          <div class="player" style="left:62%; top:48%;">
+            <div class="dot mf">MF</div>
+            <div class="name">保持</div>
+          </div>
+          <svg class="arrow" viewBox="0 0 100 100" preserveAspectRatio="none" style="inset:0; width:100%; height:100%;">
+            <line x1="62" y1="48" x2="50" y2="22" stroke="#fff" stroke-width="1.6" stroke-dasharray="3 2"/>
+            <line x1="62" y1="48" x2="32" y2="42" stroke="#fff" stroke-width="1.6" stroke-dasharray="3 2"/>
+            <line x1="32" y1="42" x2="50" y2="22" stroke="#fff" stroke-width="1.6" stroke-dasharray="3 2"/>
+          </svg>
+        </div>
+        <div class="ok"><b>成功条件：</b>同じ場所で止まらない。「パス→動く」を3回つなげたら前進できている。</div>
+      </div>
+
+      <div class="template">
+        <div class="template-head">
+          <span class="tag side">B</span>
+          <h3 style="margin:0;">サイド拡大 → 中へ切る</h3>
+        </div>
+        <p><b>いつ使う：</b>相手が中央に密集しているとき。3-3-1の本命パターン。</p>
+        <ul>
+          <li>ボールサイドのMFがタッチライン寄りへ広がる</li>
+          <li>トップはペナルティエリア手前のポケットへ斜めに落ちる／走る</li>
+          <li>逆サイドMFは中へ絞り、クロスの受け手になる</li>
+          <li>アンカーは少し遅れてサポートし、リターンパスの受け口を作る</li>
+        </ul>
+        <div class="field attack" aria-label="サイド拡大から中へ">
+          <div class="lines"></div>
+          <div class="midline"></div>
+          <div class="circle"></div>
+          <div class="box top"></div>
+          <div class="player" style="left:72%; top:22%;"><div class="dot fw">FW</div><div class="name">中へ</div></div>
+          <div class="player" style="left:88%; top:38%;"><div class="dot mf">右MF</div><div class="name">外へ</div></div>
+          <div class="player" style="left:55%; top:48%;"><div class="dot mf">中MF</div><div class="name">支え</div></div>
+          <div class="player" style="left:35%; top:30%;"><div class="dot mf">左MF</div><div class="name">逆サイド</div></div>
+          <div class="player" style="left:78%; top:62%;"><div class="dot df">右DF</div><div class="name">押し上げ</div></div>
+          <svg class="arrow" viewBox="0 0 100 100" preserveAspectRatio="none" style="inset:0; width:100%; height:100%;">
+            <path d="M78 62 L88 42" stroke="#fff" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+            <path d="M88 38 L74 24" stroke="#ffd666" stroke-width="1.8" fill="none"/>
+            <path d="M88 38 L55 48" stroke="#fff" stroke-width="1.2" stroke-dasharray="3 2" fill="none"/>
+            <defs>
+              <marker id="ah" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#fff"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+        <div class="ok"><b>仕上げ：</b>外で1対1が作れたらドリブル突破。詰まったら中のトップ or 逆サイドへ。</div>
+      </div>
+
+      <div class="template">
+        <div class="template-head">
+          <span class="tag center">C</span>
+          <h3 style="margin:0;">中央突破（スルー／壁パス）</h3>
+        </div>
+        <p><b>いつ使う：</b>相手SBが開いていて、中央にスペースがあるとき。</p>
+        <ul>
+          <li>アンカー or サイドMFが内側で受ける</li>
+          <li>トップはDFラインの裏側へタイミングを合わせて走る</li>
+          <li>壁パスなら「受ける→ワンタッチ返球→背後へ走る」の3動作をセットで</li>
+        </ul>
+        <div class="step">
+          <b>手順（例）</b>
+          <ol>
+            <li>右MFが内側へ持ち込む</li>
+            <li>トップが少し下がって壁になる</li>
+            <li>ワンタッチで返し、右MFまたはアンカーが最終ライン裏へ出す</li>
+            <li>逆サイドMFがゴール前へ走り込む（こぼれ・カットバック用）</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="template">
+        <div class="template-head">
+          <span class="tag counter">D</span>
+          <h3 style="margin:0;">奪ってからのカウンター</h3>
+        </div>
+        <p><b>いつ使う：</b>中盤〜自陣で奪った直後。相手の戻りが遅い局面。</p>
+        <ul>
+          <li>奪った瞬間、前を向ける選手へ最短パス</li>
+          <li>トップは縦へ走る（受けに下がらない）</li>
+          <li>ボールサイドのMFがサポート、逆サイドはゴール前へ斜走</li>
+          <li>目安：3本以内でシュートゾーンへ。つながらなければ無理に持ち込まず保持へ切替</li>
+        </ul>
+        <div class="ng"><b>注意：</b>カウンター失敗後に全員が押し上げたまま残ると失点につながる。アンカーとCBは必ず回収位置を残す。</div>
+      </div>
+    </section>
+
+    <section id="howto" class="card">
+      <h2><span class="num">4</span>実際の攻撃の進め方</h2>
+      <p>テンプレートを試合で使うための「流れ」です。キックオフからゴール前まで、同じ順番で考えます。</p>
+
+      <h3>フェーズ1｜自分たちのボールにする</h3>
+      <div class="grid2">
+        <div class="ok">
+          <h4>キックオフ／再開</h4>
+          <ul>
+            <li>最初の2本は安全に（サイドMF or アンカーへ）</li>
+            <li>相手プレスが強いなら、すぐ幅を使いスペースを作る</li>
+          </ul>
+        </div>
+        <div class="ok">
+          <h4>GK・DFからの配球</h4>
+          <ul>
+            <li>第一選択：足元のSB／アンカー</li>
+            <li>詰まれば反対サイドへスイッチ</li>
+            <li>ロングは「トップの競り＋こぼれ回収」までセット</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top:18px;">フェーズ2｜前進する（どこを攻めるか決める）</h3>
+      <p>ボールを持ったら、次の優先順位で見る。</p>
+      <ol>
+        <li><b>前が空いているか</b> → 空いていれば縦パス／ドリブルでテンプレC or D</li>
+        <li><b>中央が詰まっているか</b> → 詰まっていればテンプレB（外へ）</li>
+        <li><b>どちらも厳しいか</b> → テンプレAでいったんリセット（下げて作り直し）</li>
+      </ol>
+      <div class="tip">個人判断の目安：ボール保持は最大3タッチ。4タッチ目に入る前に「出す／運ぶ／戻す」を決める。</div>
+
+      <h3 style="margin-top:18px;">フェーズ3｜フィニッシュ（ゴール前の型）</h3>
+      <div class="grid3">
+        <div class="step">
+          <h4>① カットインシュート</h4>
+          <p>サイドMFが内側へ切り込み、遠めからでも枠内へ。逆足ならカットバックを優先。</p>
+        </div>
+        <div class="step">
+          <h4>② クロス → 中</h4>
+          <p>トップはニア、逆サイドMFはファー。アンカーはペナ外でセカンドボール。</p>
+        </div>
+        <div class="step">
+          <h4>③ カットバック</h4>
+          <p>ゴールライン際まで運んだら、戻しパス。走り込むのは中MF or 逆サイド。</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:18px;">具体シーケンス例（右サイド起点）</h3>
+      <div class="step">
+        <ol>
+          <li>CB → 右SBへ横パス</li>
+          <li>右SBが押し上げ、右MFがさらに外へ広がる（幅を作る）</li>
+          <li>アンカーが右ハーフスペースへ寄り、三角形を作る</li>
+          <li>右MFが受けて前を向く → トップが斜めに動いて受け所を作る</li>
+          <li>出せるなら最終ライン裏へ。無理なら一度アンカーへ戻し、逆サイドへスイッチ</li>
+          <li>逆サイド到達後、左MFがクロス or カットイン。ファーに右MFが走り込む</li>
+        </ol>
+      </div>
+      <p class="muted">左起点も同じ手順の鏡写し。左右どちらからでも同じ「型」で攻められるようにしておく。</p>
+
+      <h3 style="margin-top:18px;">よくある失敗と修正</h3>
+      <div class="grid2">
+        <div class="ng">
+          <h4>やりがち</h4>
+          <ul>
+            <li>FWだけが前に残り、孤立する</li>
+            <li>サイドで止まって横パスだけ繰り返す</li>
+            <li>奪われたあと、前がかりのまま全員が前に残る</li>
+          </ul>
+        </div>
+        <div class="ok">
+          <h4>修正</h4>
+          <ul>
+            <li>トップは「受ける／引っ張る／裏へ」を交互に</li>
+            <li>外で止まったら、中への1本かスイッチを選ぶ</li>
+            <li>攻撃参加は最大5人。アンカーとCBは残す</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="defense" class="card">
+      <h2><span class="num">5</span>守り方の原則</h2>
+      <p>攻撃の型を増やすほど、守備の共通言語が重要になります。基本は2つだけです。</p>
+
+      <h3>守り① コンパクトを保つ</h3>
+      <p>DF3とMF3の距離を開きすぎない。トップも相手最終ラインに張り付きすぎず、奪われたあとに即プレッシャーできる位置を取る。</p>
+      <div class="field mini" aria-label="コンパクトな守り">
+        <div class="lines"></div>
+        <div class="midline"></div>
+        <div class="circle"></div>
+        <div class="box bottom"></div>
+        <div class="player" style="left:50%; top:38%;"><div class="dot fw">FW</div><div class="name">起点</div></div>
+        <div class="player" style="left:28%; top:52%;"><div class="dot mf">MF</div></div>
+        <div class="player" style="left:50%; top:54%;"><div class="dot mf">MF</div></div>
+        <div class="player" style="left:72%; top:52%;"><div class="dot mf">MF</div></div>
+        <div class="player" style="left:28%; top:70%;"><div class="dot df">DF</div></div>
+        <div class="player" style="left:50%; top:74%;"><div class="dot df">CB</div></div>
+        <div class="player" style="left:72%; top:70%;"><div class="dot df">DF</div></div>
+        <div class="player" style="left:50%; top:90%;"><div class="dot gk">GK</div></div>
+      </div>
+      <div class="ok">目安：隣との間隔は大きく空けない。開いたら「近い！」と声で修正。</div>
+
+      <h3 style="margin-top:18px;">守り② ボールサイドへ寄せる</h3>
+      <ul>
+        <li>1人目：ボール保持者へアプローチ</li>
+        <li>2人目：パスコース（特に内側）を切る</li>
+        <li>3人目：ゴール前と逆サイドのカバー</li>
+      </ul>
+      <div class="ng">やってはいけないこと：1人が追いかけるだけで、ライン全体が動かないこと。寄せは「個人」ではなく「ブロック」で行う。</div>
+    </section>
+
+    <section id="rules" class="card">
+      <h2><span class="num">6</span>試合で共有する原則</h2>
+      <div class="grid2">
+        <div class="ok">
+          <h3>1. ボールを失わない優先順位</h3>
+          <p>難しい縦パスより、確実な接続。失ったら5秒以内に回収を試みる。</p>
+        </div>
+        <div class="ok">
+          <h3>2. 声は最速のパス</h3>
+          <p>「もらえる」「スイッチ」「残して」など、短い合図をチームで統一する。</p>
+        </div>
+        <div class="ok">
+          <h3>3. 空いた場所へ入る</h3>
+          <p>誰かが動いたら、空いたレーンを埋める。ポジショナルプレーの最小単位。</p>
+        </div>
+        <div class="ok">
+          <h3>4. 人数をそろえて動く</h3>
+          <p>攻守とも「孤軍」を作らない。前に出る人数と残る人数をセットで決める。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">★</span>試合前チェック（短く）</h2>
+      <ul>
+        <li>今日の主攻は A / B / C / D のどれか（第1候補と第2候補を決める）</li>
+        <li>右起点・左起点のシーケンスを1本ずつ確認</li>
+        <li>奪われたあとの残る2人（アンカー＋CB）を確認</li>
+        <li>フィニッシュは「カットイン／クロス／カットバック」のどれを優先するか</li>
+      </ul>
+      <div class="tip">型は減らして、精度を上げる。まずテンプレB（サイド拡大→中）を試合で3回再現できれば十分。</div>
+    </section>
+
+    <footer>
+      3-3-1 戦術ガイド｜配置・役割・攻めテンプレート・攻撃手順
+    </footer>
+  </div>
+</body>
+</html>

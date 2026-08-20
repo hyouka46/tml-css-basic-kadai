@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>8人制サッカー 3-3-1 フォーメーション戦術ガイド</title>
+  <title>小学生 8人制サッカー 3-3-1 戦術ガイド</title>
   <style>
     :root {
       --pitch-green: #2d6a3f;
@@ -338,6 +338,27 @@
       border-top: 1px solid var(--border);
     }
 
+    .kids-quote {
+      background: rgba(245, 158, 11, 0.12);
+      border-left: 3px solid var(--accent-yellow);
+      padding: 0.75rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .kids-quote strong { color: var(--accent-yellow); }
+
+    .grade-badge {
+      display: inline-block;
+      background: #7c3aed;
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+    }
+
     svg.tactical-svg {
       width: 100%;
       max-width: 450px;
@@ -349,18 +370,20 @@
 <body>
 
 <header>
-  <h1>⚽ 8人制サッカー 3-3-1 フォーメーション<br>戦術完全ガイド</h1>
-  <p>Jリーグ・強豪チームの考え方を8人制に落とし込んだ、攻め・守り・セットプレー・実践パターン集</p>
+  <h1>⚽ 小学生 8人制サッカー 3-3-1<br>戦術ガイド</h1>
+  <p>コーチ・保護者向け。Jリーグの考え方を小学生のレベルに落とし込んだ、攻め・守り・練習メニュー・子どもへの声かけ集</p>
 </header>
 
 <nav>
   <ul>
     <li><a href="#overview">概要</a></li>
+    <li><a href="#elementary">小学生の基本</a></li>
     <li><a href="#formation">フォーメーション</a></li>
     <li><a href="#attack">攻め方</a></li>
     <li><a href="#defense">守り方</a></li>
     <li><a href="#patterns">攻撃パターン</a></li>
     <li><a href="#templates">攻撃テンプレート</a></li>
+    <li><a href="#voices">声かけ集</a></li>
     <li><a href="#setpiece">セットプレー</a></li>
     <li><a href="#training">練習メニュー</a></li>
   </ul>
@@ -370,32 +393,97 @@
 
 <!-- ===== 概要 ===== -->
 <section id="overview">
-  <h2>📋 8人制 3-3-1 とは</h2>
+  <h2>📋 小学生 8人制 3-3-1 とは</h2>
   <div class="card">
-    <p>8人制サッカーは通常 <strong>GK + フィールド7人</strong> で行われます。3-3-1は<strong>バランス型</strong>の定番フォーメーションで、Jリーグの4-2-3-1や3-4-2-1の考え方を8人制に縮小した形と言えます。</p>
+    <p>小学生サッカーでは、<strong>5・6年生（高学年）</strong>の公式戦・リーグ戦で <strong>GK + フィールド7人の8人制</strong> がよく使われます。3-3-1は<strong>バランスが良く覚えやすい</strong>定番フォーメーションです。</p>
     <br>
-    <p>川崎フロンターレの「位置取りサッカー」、横浜F・マリノスの「ハイプレス＋サイド攻撃」、ヴィッセル神戸の「3バック＋インサイドハーフ」——これら強豪の共通点は<strong>「幅を使い、中央を人数で支配し、前線1人に決定力を集中させる」</strong>ことです。8人制3-3-1でも同じ原則が使えます。</p>
+    <p>プロ（Jリーグ）の考え方をそのまま使うのではなく、<strong>「パスを出す」「走る」「仲間を助ける」</strong> という基本を3-3-1の形で身につけさせるのが小学生サッカーの目的です。勝つことより、<strong>サッカーが好きになること・全員がボールに触れること</strong> を大切にしましょう。</p>
   </div>
 
   <div class="card-grid">
     <div class="card">
-      <h3>8人制の特徴</h3>
+      <h3>小学生 8人制の特徴</h3>
       <ul>
-        <li>ピッチが狭い → 1タッチ・2タッチの速いパスが効く</li>
-        <li>人数が少ない → 1人の空きが大きなチャンスになる</li>
-        <li>全員が攻撃にも守備にも関与する「トータルサッカー」的要素が強い</li>
-        <li>サイドの使い方が勝敗を左右する</li>
+        <li>ピッチが狭い → <strong>短いパス</strong>が効く（ドリブルばかりにしない）</li>
+        <li>人数が少ない → <strong>1人の空き</strong>が大きなチャンスになる</li>
+        <li>全員が攻撃にも守備にも関わる → <strong>「ボールを持ってない人も大切」</strong></li>
+        <li>サイド（横）を使うとゴールに近づきやすい</li>
+        <li>体力的にも無理のない試合時間（1本10〜15分 × 2本 など）</li>
       </ul>
     </div>
     <div class="card">
-      <h3>3-3-1の強み</h3>
+      <h3>3-3-1の強み（小学生向け）</h3>
       <ul>
-        <li>中盤3人で人数優位を作りやすい</li>
-        <li>守備時は5-2-0に変化し、ブロックが組みやすい</li>
-        <li>サイドバック（WB）が攻撃の幅を提供</li>
-        <li>FW1人に集中供給 → 決定力のある選手を活かせる</li>
+        <li>中盤3人で<strong>「三角形」</strong>を作りやすい</li>
+        <li>守るときはみんなで下がって<strong>人数をそろえやすい</strong></li>
+        <li>DF3人で守備の土台が作れる（小学生に安心感）</li>
+        <li>FW1人に集中 → ゴール前に行く役割がはっきりする</li>
+        <li>ポジション名が覚えやすい（コーチの指示が伝わりやすい）</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<!-- ===== 小学生の基本 ===== -->
+<section id="elementary">
+  <h2>👦 小学生サッカーで大切なこと</h2>
+
+  <div class="card">
+    <h3>学年別の目安</h3>
+    <table class="comparison-table">
+      <tr><th>学年</th><th>重点</th><th>3-3-1の使い方</th></tr>
+      <tr>
+        <td><strong>3〜4年生</strong><span class="grade-badge">低学年</span></td>
+        <td>ボールに触れる・パス・ドリブル・楽しさ</td>
+        <td>まずは「守る人」「攻める人」の大まかな役割だけ。細かい戦術は後回し</td>
+      </tr>
+      <tr>
+        <td><strong>5年生</strong><span class="grade-badge">高学年</span></td>
+        <td>ポジションの役割・パス＆走る・声を出す</td>
+        <td>3-3-1の形を意識。攻撃パターン1〜2個を練習で覚える</td>
+      </tr>
+      <tr>
+        <td><strong>6年生</strong><span class="grade-badge">高学年</span></td>
+        <td>チーム戦術・セットプレー・試合の読み</td>
+        <td>このガイドの内容を本格的に使える。テンプレートA/B/Cを試合で使い分け</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>🎯 小学生に優先して教える5つのこと</h3>
+      <ol>
+        <li><strong>パスを出す</strong> — 近くの仲間へ。強すぎず、弱すぎず</li>
+        <li><strong>パスを出したら走る</strong> — ボールを持ってない時間こそチャンス</li>
+        <li><strong>声を出す</strong> — 「こっち！」「マーク！」「上がれ！」</li>
+        <li><strong>ボールを奪ったら前を向く</strong> — すぐ攻撃に切り替える</li>
+        <li><strong>味方を助ける</strong> — 近くにいる仲間の近くを守る・サポートする</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>⚠️ 小学生サッカーで避けたいこと</h3>
+      <ul>
+        <li>1人にボールを集中させすぎる（全員が触れない）</li>
+        <li>難しい専門用語ばかり使う（子どもが混乱する）</li>
+        <li>試合中に長い説教（30秒以内の短い指示に）</li>
+        <li>結果（勝ち負け）だけを追いすぎる</li>
+        <li>同じ子をずっと同じポジションに固定する</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>8人制のルール（よく使われる目安）</h3>
+    <ul>
+      <li><strong>ピッチ：</strong> 約40m × 25m（大会により異なる）</li>
+      <li><strong>ゴール：</strong> 高さ約2m × 幅約5m</li>
+      <li><strong>人数：</strong> GK1 + フィールド7 = 8人</li>
+      <li><strong>オフサイド：</strong> 多くの大会で<strong>なし</strong>（小学生は走り込みやすい！）</li>
+      <li><strong>スローイン：</strong> 足を浮かせず、両手で頭の後ろから投げる</li>
+      <li><strong>ゴールキック：</strong> 手で投げる or 足で蹴る（大会ルールを確認）</li>
+    </ul>
+    <div class="highlight"><strong>ポイント：</strong> オフサイドがないので、FW（ST）は積極的に相手ゴール前を走り回ってOK！</div>
   </div>
 </section>
 
@@ -434,38 +522,38 @@
 
     <div>
       <div class="card">
-        <h3>各ポジションの役割</h3>
+        <h3>各ポジションの役割（小学生向け）</h3>
         <table class="comparison-table">
-          <tr><th>ポジ</th><th>主な役割</th><th>Jリーグ的参考</th></tr>
+          <tr><th>ポジ</th><th>やること</th><th>子どもへの言い方</th></tr>
           <tr>
-            <td><strong>GK</strong></td>
-            <td>ビルドアップの起点。足元での配球、コミュニケーション</td>
-            <td>権田修一型：積極的なフィールドプレーヤー</td>
+            <td><strong>GK</strong><br>（キーパー）</td>
+            <td>ゴールを守る。仲間にパスを出して攻撃を始める。全体を見て声を出す</td>
+            <td>「ゴールを守って、蹴り出したらみんなにパス！」</td>
           </tr>
           <tr>
-            <td><strong>CB</strong></td>
-            <td>最後の守備者。ボール保持、前線へのロングパス</td>
-            <td>板倉滉型：落ち着いたビルドアップ</td>
+            <td><strong>CB</strong><br>（センターバック）</td>
+            <td>真ん中の守備。相手の攻撃を止める。キーパーからボールをもらって前に出す</td>
+            <td>「真ん中を守る番長！ボールをもらったらサイドか前にパス」</td>
           </tr>
           <tr>
-            <td><strong>LB/RB</strong></td>
-            <td>守備の幅、攻撃時はオーバーラップ。クロス供給</td>
-            <td>マリノスSB型：積極的な幅攻撃</td>
+            <td><strong>LB/RB</strong><br>（サイドの守備）</td>
+            <td>左右の守備。攻めるときは前に上がってパスをもらう</td>
+            <td>「サイドを守って、攻めるときは前に上がって！」</td>
           </tr>
           <tr>
-            <td><strong>CM</strong></td>
-            <td>試合の司令塔。攻守のハブ。スペースの創出</td>
-            <td>柴崎岳型：前線への供給、攻守の切替</td>
+            <td><strong>CM</strong><br>（センター）</td>
+            <td>真ん中でボールをつなぐ。前にも後ろにもパス。攻守の切り替え役</td>
+            <td>「みんなの真ん中！ボールをつないで前に出すのが仕事」</td>
           </tr>
           <tr>
-            <td><strong>LM/RM</strong></td>
-            <td>サイドの1vs1、インサイドへのカット、DF支援</td>
-            <td>久保建英型：ドリブル＋パス</td>
+            <td><strong>LM/RM</strong><br>（サイド）</td>
+            <td>左右でボールを受ける。前にドリブル or パス。守るときは下がる</td>
+            <td>「サイドでボールをもらって、前に行くかパスを出す！」</td>
           </tr>
           <tr>
-            <td><strong>ST</strong></td>
-            <td>ゴール前の支点。裏への走り、DFを引きつける</td>
-            <td>古橋亨梧型：動き＋決定力</td>
+            <td><strong>ST</strong><br>（ストライカー）</td>
+            <td>ゴールの前でシュート。相手DFを引きつけて仲間にスペースを作る</td>
+            <td>「ゴールを狙う人！下がってから走って、シュートチャンスを作ろう」</td>
           </tr>
         </table>
       </div>
@@ -475,118 +563,117 @@
 
 <!-- ===== 攻め方 ===== -->
 <section id="attack">
-  <h2>⚔️ 攻め方 — Jリーグ強豪の考え方</h2>
+  <h2>⚔️ 攻め方 — 小学生向け 3つの型</h2>
 
   <div class="card">
-    <h3>基本原則：「幅 → 深さ → 決定打」</h3>
-    <p>Jリーグ上位チームの攻撃は大きく3フェーズに分かれます。8人制でも同じ流れを意識しましょう。</p>
+    <h3>基本の流れ：「パス → 走る → シュート」</h3>
+    <p>プロチーム（Jリーグ）も同じ流れです。小学生にはこの3ステップで教えましょう。</p>
     <ol class="step-list">
-      <li><strong>ビルドアップ（自陣〜中盤）</strong> — GK/CBからサイドまたはCMへ。相手プレスを避けつつ、中盤3人で人数優位を作る</li>
-      <li><strong>プログレス（中盤〜前線）</strong> — サイドへの展開、CMの前進、STの引きつけで相手DFラインを崩す</li>
-      <li><strong>フィニッシュ（最終三分の一）</strong> — クロス、スルーパス、シュート。ゴール前に人数を集中させる</li>
+      <li><strong>自陣（うちのゴール側）</strong> — キーパー・DFから近くの仲間へパス。無理に前に行かない</li>
+      <li><strong>中盤（真ん中）</strong> — サイド（LM/RM）やセンター（CM）でボールをつなぐ。相手が寄せてきたら反対サイドへ</li>
+      <li><strong>前（相手ゴール側）</strong> — ゴール前まで行ったらシュート or 仲間へパス。ゴール前に人数を送る</li>
     </ol>
   </div>
 
   <div class="card-grid">
     <div class="card">
-      <span class="tag">川崎型</span>
-      <h3>位置取りサッカー（Possession）</h3>
+      <span class="tag">基本型</span>
+      <h3>① パスでつなぐ攻撃</h3>
       <ul>
-        <li>ボールを持つ選手の<strong>近くに常に2〜3人</strong>がサポート</li>
-        <li>三角形のパスコースを常に確保</li>
-        <li>相手を引きつけてから<strong>弱いサイド</strong>へ素早く展開</li>
-        <li>焦らず、相手の形が崩れるまで保持</li>
+        <li>ドリブルより<strong>パスを優先</strong>（小学生はドリブルばかりになりがち）</li>
+        <li>ボールを持っている人の<strong>近くに仲間が2人</strong>いる状態を作る</li>
+        <li>相手が寄せてきたら<strong>反対サイド</strong>へ素早くパス</li>
+        <li>焦らず、チャンスが来るまでボールを大切に</li>
       </ul>
-      <div class="highlight">
-        <strong>8人制での使い方：</strong> CMがボールを持つ → LM/RMが左右に広がる → CB/LB/RBが後方サポート → 相手MFが寄せたら反対サイドへワンタッチで展開
-      </div>
+      <div class="kids-quote"><strong>声かけ：</strong>「近くの人にパス！ 一人で行かないで！」</div>
     </div>
 
     <div class="card">
-      <span class="tag blue">マリノス型</span>
-      <h3>ハイプレス＋速攻（Transition）</h3>
+      <span class="tag blue">速攻型</span>
+      <h3>② 奪ったらすぐ攻める</h3>
       <ul>
-        <li>相手のビルドアップを<strong>前線から妨害</strong></li>
-        <li>奪取後は<strong>3秒以内</strong>に前線へ送る</li>
-        <li>ST＋LM/RMの3人でゴール前に人数を作る</li>
-        <li>サイドから中央へのカットイン、またはクロス</li>
+        <li>ボールを奪ったら<strong>すぐ前を向く</strong></li>
+        <li>3秒以内に前の仲間（ST・サイド）へパス</li>
+        <li>ST＋LM＋RMの<strong>3人で前に走る</strong></li>
+        <li>相手が戻る前にゴール前まで行く</li>
       </ul>
-      <div class="highlight">
-        <strong>8人制での使い方：</strong> 相手CBの横パスをST+CMがカット → 奪取即STへ → LM/RMが両サイドに走り込み → 2対1や1対1でゴール前
-      </div>
+      <div class="kids-quote"><strong>声かけ：</strong>「取った！ 前見て！ 走れ！」</div>
     </div>
 
     <div class="card">
-      <span class="tag yellow">神戸型</span>
-      <h3>3バック＋インサイドハーフ</h3>
+      <span class="tag yellow">サイド型</span>
+      <h3>③ 横から攻める</h3>
       <ul>
-        <li>LM/RMが<strong>インサイドに入り</strong>、CMと中央で人数を作る</li>
-        <li>LB/RBが<strong>幅を取りに上がる</strong>（WB化）</li>
-        <li>中央3人（CM+LM+RM）で相手MFを上回る</li>
-        <li>STは相手CB2人を引きつけ、インサイドから供給</li>
+        <li>サイド（LM/RM）でボールを受ける</li>
+        <li>サイドの守備（LB/RB）が<strong>前に上がって</strong>サポート</li>
+        <li>ゴール前へ<strong>センターリング</strong>（横パス）を出す</li>
+        <li>STがゴール前で待ってシュート</li>
       </ul>
-      <div class="highlight">
-        <strong>8人制での使い方：</strong> LM/RMが中央寄りに入る → LB/RBが高い位置で幅 → CMがフリーのスペースで受ける → STへのスルーパス or シュート
-      </div>
+      <div class="kids-quote"><strong>声かけ：</strong>「サイド行け！ 前上がれ！ クロス出して！」</div>
     </div>
   </div>
 
   <div class="card">
-    <h3>攻撃時のポジション変化（3-3-1 → 2-3-2-1）</h3>
-    <p>ボールを持って前進するとき、フォーメーションは流動的に変化します。</p>
+    <h3>攻めるときのみんなの動き</h3>
+    <p>ボールを持って前に行くとき、全員が少しずつ前に出ます。</p>
     <ul>
-      <li><strong>LB/RB</strong> → ハイポジションで幅を提供（オーバーラップ）</li>
-      <li><strong>LM/RM</strong> → インサイドに入るか、サイドライン際で1vs1</li>
-      <li><strong>CM</strong> → ペナルティエリア前（ハーフスペース）で受ける</li>
-      <li><strong>CB</strong> → 後方でカバー（カウンター対策）</li>
-      <li><strong>ST</strong> → CBラインの裏 or 前で支点</li>
+      <li><strong>LB/RB</strong> → サイドのラインまで前に上がる</li>
+      <li><strong>LM/RM</strong> → サイドでボールをもらう or 前に走る</li>
+      <li><strong>CM</strong> → ゴール前（ペナルティエリア前）で待つ</li>
+      <li><strong>CB</strong> → 一番後ろに残る（相手の速攻対策）</li>
+      <li><strong>ST</strong> → ゴール前 or 相手DFの前で待つ</li>
     </ul>
+    <div class="kids-quote"><strong>声かけ：</strong>「ボール持ってる人の近くに行け！ 離れすぎないで！」</div>
   </div>
 </section>
 
 <!-- ===== 守り方 ===== -->
 <section id="defense">
-  <h2>🛡️ 守り方 — 組織的ディフェンス</h2>
+  <h2>🛡️ 守り方 — 小学生向け</h2>
 
   <div class="card">
-    <h3>守備の基本：5-2-0 ミッドブロック</h3>
-    <p>8人制3-3-1の守備形は <strong>5-2-0</strong>（DF3 + MF2、FW1は相手CBをマーク）が基本です。Jリーグでも主流の「ミッドブロック」を採用します。</p>
+    <h3>守るときの基本：「みんなで下がって、人数をそろえる」</h3>
+    <p>8人制3-3-1で守るときは、<strong>DF3人 + MF2人</strong> が下がって守り、ST1人が相手のボール持ちを見ます。小学生には「みんなでゴールを守ろう」と伝えましょう。</p>
+    <div class="kids-quote"><strong>声かけ：</strong>「ボールより人！ 相手より人数多く守れ！」</div>
   </div>
 
   <div class="card-grid">
     <div class="card">
-      <h3>守備原則 ①：ブロックの厚み</h3>
+      <h3>守備 ①：一列にそろえる</h3>
       <ul>
-        <li>DFラインとMFラインの距離は <strong>10〜15m</strong> を目安</li>
-        <li>縦のラインを揃え、スルーパスの隙をなくす</li>
-        <li>CBは最後方に残り、LB/RBはサイドをカバー</li>
-        <li>相手ST1人に対してCB+CMで2対1を作る</li>
+        <li>DFとMFの距離を<strong>近く</strong>保つ（離れすぎない）</li>
+        <li>縦（前後）のラインをそろえる → 裏へのパスを防ぐ</li>
+        <li>CBは一番後ろ。LB/RBは左右をカバー</li>
+        <li>相手ST1人にはCB+CMで2人で守る</li>
       </ul>
+      <div class="kids-quote"><strong>声かけ：</strong>「ラインそろえて！ 離れないで！」</div>
     </div>
     <div class="card">
-      <h3>守備原則 ②：プレスのタイミング</h3>
+      <h3>守備 ②：ボールを奪うタイミング</h3>
       <ul>
-        <li><strong>高いプレス：</strong> 相手GK/CBの受けた瞬間にST+CMが寄せる（マリノス型）</li>
-        <li><strong>ミッドプレス：</strong> 中盤で待ち、横パスを誘ってから奪う（川崎型）</li>
-        <li><strong>ローブロック：</strong> ペナルティエリア前で人数を固める（神戸型）</li>
+        <li><strong>前から攻める：</strong> ST+CMが相手に寄せて奪う（元気なチーム向け）</li>
+        <li><strong>中盤で待つ：</strong> 中盤で待って、横パスを出した瞬間に奪う（基本）</li>
+        <li><strong>ゴール前で固める：</strong> ゴール前に人数を集めて守る（リード中向け）</li>
       </ul>
+      <div class="kids-quote"><strong>声かけ：</strong>「寄せろ！ 一緒に行け！ 取れ！」</div>
     </div>
     <div class="card">
-      <h3>守備原則 ③：奪取後の動き</h3>
+      <h3>守備 ③：奪ったらすぐ攻め</h3>
       <ul>
-        <li>奪ったら<strong>即座に前を向く</strong>（ターンオーバー）</li>
-        <li>ST+LM/RMが前線に走り込み開始</li>
-        <li>CMが最初のパスを出す「出口」になる</li>
-        <li>カウンターは3秒ルール：3秒以内に前線へ</li>
+        <li>ボールを奪ったら<strong>すぐ前を向く</strong></li>
+        <li>ST+LM+RMが前に走り始める</li>
+        <li>CMが最初のパスを出す</li>
+        <li><strong>3秒ルール：</strong> 3秒以内に前の仲間へパス！</li>
       </ul>
+      <div class="kids-quote"><strong>声かけ：</strong>「取った！ 前！ 走れ走れ！」</div>
     </div>
     <div class="card">
-      <h3>守備原則 ④：セットプレー守備</h3>
+      <h3>守備 ④：セットプレー</h3>
       <ul>
-        <li>FK：壁3人＋残り4人でゾーン（8人制は人数が少ないため壁を厚く）</li>
-        <li>CK：ニアポスト1人＋ファー2人＋残りはマーク</li>
-        <li>スローイン：ニア1人＋他はライン維持</li>
-        <li>ゴールキック：DFラインを上げてコンパクトに</li>
+        <li><strong>FK（フリーキック）：</strong> 壁を2〜3人。残りはゴールを守る</li>
+        <li><strong>CK（コーナーキック）：</strong> ゴール前に人数を集める。1人1人マーク</li>
+        <li><strong>スローイン：</strong> 相手に近づきすぎない。ラインを保つ</li>
+        <li><strong>ゴールキック：</strong> DFラインを上げてコンパクトに</li>
       </ul>
     </div>
   </div>
@@ -621,14 +708,14 @@
 
 <!-- ===== 攻撃パターン ===== -->
 <section id="patterns">
-  <h2>🎯 実践攻撃パターン（5選）</h2>
-  <p style="margin-bottom:1.5rem; color:var(--muted);">実際の試合で使える具体的な攻撃の流れです。練習で繰り返し、試合で使えるようにしましょう。</p>
+  <h2>🎯 試合で使える攻撃パターン（5選）</h2>
+  <p style="margin-bottom:1.5rem; color:var(--muted);">練習で何度もやって、試合で「決まってる動き」として使えるようにしましょう。5〜6年生向け。</p>
 
   <!-- パターン1 -->
   <div class="card">
-    <span class="tag">パターン1</span><span class="tag green">サイドオーバーラップ</span>
-    <h3>サイド展開 → オーバーラップ → クロス</h3>
-    <p><strong>参考：</strong> 横浜F・マリノスの定番サイド攻撃</p>
+    <span class="tag">パターン1</span><span class="tag green">サイド攻撃</span>
+    <h3>サイドに出す → 前に上がる → クロス</h3>
+    <p><strong>覚え方：</strong> 「サイド → 上がれ → クロス」</p>
 
     <svg class="tactical-svg" viewBox="0 0 300 450" xmlns="http://www.w3.org/2000/svg">
       <rect width="300" height="450" fill="#2d6a3f" rx="8"/>
@@ -668,19 +755,20 @@
     </svg>
 
     <ol class="step-list">
-      <li>CMがボールを持ち、左サイドのLMへパス（相手MFの注意を左に引く）</li>
-      <li>LMがサイドライン際でボールを保持。同時にLBが<strong>オーバーラップ</strong>で前に上がる</li>
-      <li>LMはLBへパス、または1vs1で相手DFを抜く</li>
-      <li>LB（またはLM）がゴール前へ<strong>クロス</strong>。STがニアポスト、CMがファーポストへ走り込む</li>
+      <li>CM（センター）がボールを持ち、左サイドのLMへパス</li>
+      <li>LMがサイドでボールを保持。同時にLB（左の守備）が<strong>前に上がる</strong></li>
+      <li>LMはLBへパス、または前にドリブル</li>
+      <li>ゴール前へ<strong>横パス（クロス）</strong>。STがゴール前で待ってシュート！</li>
     </ol>
-    <div class="highlight"><strong>ポイント：</strong> LBのオーバーラップが鍵。LMがボールを持つ間にLBが走り込むタイミングを合わせる。RM/CMはファーポストカバー。</div>
+    <div class="kids-quote"><strong>声かけ：</strong>「左サイド！ 前上がれ！ クロス！ ゴール前行け！」</div>
+    <div class="highlight"><strong>ポイント：</strong> LBが前に上がるタイミングが大事。LMがボールを持っている間にLBが走る。</div>
   </div>
 
   <!-- パターン2 -->
   <div class="card">
     <span class="tag">パターン2</span><span class="tag blue">中央突破</span>
-    <h3>ST引きつけ → CM前進 → スルーパス</h3>
-    <p><strong>参考：</strong> 川崎フロンターレの中央突破</p>
+    <h3>STが下がる → CM前進 → 裏へパス</h3>
+    <p><strong>覚え方：</strong> 「下がる → 前進 → 走れ」</p>
 
     <svg class="tactical-svg" viewBox="0 0 300 450" xmlns="http://www.w3.org/2000/svg">
       <rect width="300" height="450" fill="#2d6a3f" rx="8"/>
@@ -710,70 +798,73 @@
     </svg>
 
     <ol class="step-list">
-      <li>CBからCMへパス。STは<strong>下がって</strong>相手CBを引きつける（ドロップ）</li>
-      <li>STが相手CB2人の注意を引いた隙に、CMが<strong>ドリブルまたはパス</strong>で前進</li>
-      <li>STが一気に<strong>裏へ走り込み</strong>（オフサイドラインの裏）</li>
-      <li>CMからSTへ<strong>スルーパス</strong> → 1対1 with GK → シュート</li>
+      <li>CBからCMへパス。STは<strong>下がって</strong>相手DFの前に出る</li>
+      <li>STが相手DFの注意を引いた隙に、CMが<strong>前に進む</strong></li>
+      <li>STが一気に<strong>前（ゴール側）へ走る</strong></li>
+      <li>CMからSTへ<strong>前へのパス</strong> → シュート！</li>
     </ol>
-    <div class="highlight"><strong>ポイント：</strong> STの「下がってから走る」動きが最重要。相手CBを1人引きつければ、CM前進のスペースが生まれる。</div>
+    <div class="kids-quote"><strong>声かけ：</strong>「下がれ！ 前進！ 走れ！ パス出して！」</div>
+    <div class="highlight"><strong>ポイント：</strong> STの「下がってから走る」動きがカギ。小学生でもオフサイドがないので積極的に走り込める。</div>
   </div>
 
   <!-- パターン3 -->
   <div class="card">
-    <span class="tag">パターン3</span><span class="tag yellow">カウンター</span>
-    <h3>奪取 → 即展開 → 3対2速攻</h3>
-    <p><strong>参考：</strong> 横浜F・マリノスの速攻（アンチ・プレス）</p>
+    <span class="tag">パターン3</span><span class="tag yellow">速攻</span>
+    <h3>奪った！ → 3人で前へ → ゴール</h3>
+    <p><strong>覚え方：</strong> 「取った！ 走れ！ ゴール！」</p>
 
     <ol class="step-list">
-      <li>中盤でCMまたはLM/RMが相手から<strong>ボール奪取</strong></li>
-      <li>奪取した選手は<strong>即座に前を向く</strong>（ターンオーバー）。3秒以内にパス</li>
-      <li>ST＋LM＋RMの<strong>3人が前線へ</strong>走り込み（トランジション）</li>
-      <li>相手DFは2人しか戻れていない → <strong>3対2</strong>の数的優位</li>
-      <li>ボール保持者がSTへ送る → STが<strong>LM or RM</strong>へ横パス → ゴール前で2対1</li>
+      <li>中盤でCMまたはLM/RMが相手から<strong>ボールを奪う</strong></li>
+      <li>奪った人は<strong>すぐ前を向いて</strong>パス（3秒以内！）</li>
+      <li>ST＋LM＋RMの<strong>3人が前に走る</strong></li>
+      <li>相手DFが2人しかいない → <strong>3対2</strong>で有利！</li>
+      <li>STへパス → STがLM or RMへ渡す → ゴール前でシュート</li>
     </ol>
-    <div class="highlight"><strong>ポイント：</strong> 「奪った瞬間」が勝負。ためらうと相手が戻る。STは中央、LM/RMは両サイドに広がる。</div>
+    <div class="kids-quote"><strong>声かけ：</strong>「取った！ 前！ 走れ！ パス！ シュート！」</div>
+    <div class="highlight"><strong>ポイント：</strong> ためらうと相手が戻ってくる。奪った瞬間がチャンス！</div>
   </div>
 
   <!-- パターン4 -->
   <div class="card">
-    <span class="tag">パターン4</span><span class="tag green">インサイドカット</span>
-    <h3>LM/RMインサイド → ハーフスペース → シュート</h3>
-    <p><strong>参考：</strong> ヴィッセル神戸のインサイドハーフ戦術</p>
+    <span class="tag">パターン4</span><span class="tag green">中央からシュート</span>
+    <h3>サイドの内側 → 前進 → シュート</h3>
+    <p><strong>覚え方：</strong> 「内側入って → 前進 → シュート」</p>
 
     <ol class="step-list">
-      <li>LM/RMがサイドではなく<strong>中央寄り（ハーフスペース）</strong>でボールを受ける</li>
-      <li>LB/RBがサイドライン際まで上がり、幅を提供</li>
-      <li>LM/RMが<strong>インサイドにカット</strong>し、DFラインの間を突破</li>
-      <li>STが相手CBを引きつけ、LM/RMが<strong>フットワークで1vs1</strong></li>
-      <li>ペナルティエリア前で<strong>シュート</strong> or STへのパス</li>
+      <li>LM/RMがサイドの<strong>少し内側</strong>でボールを受ける</li>
+      <li>LB/RBがサイドのラインまで上がる</li>
+      <li>LM/RMが<strong>ゴール方向にドリブル</strong></li>
+      <li>ゴール前まで行ったら<strong>シュート</strong> or STへパス</li>
     </ol>
-    <div class="highlight"><strong>ポイント：</strong> 8人制はゴールまでの距離が短い。ハーフスペースからのシュートは非常に有効。LM/RMの技術力が問われる。</div>
+    <div class="kids-quote"><strong>声かけ：</strong>「内側入れ！ 前進！ シュート！」</div>
+    <div class="highlight"><strong>ポイント：</strong> 8人制はゴールまで近い。前進してシュートする勇気を持とう。</div>
   </div>
 
   <!-- パターン5 -->
   <div class="card">
-    <span class="tag">パターン5</span><span class="tag blue">スイッチ</span>
-    <h3>密集 → 反対サイドへスイッチ → 1vs1</h3>
-    <p><strong>参考：</strong> 川崎フロンターレのサイドチェンジ</p>
+    <span class="tag">パターン5</span><span class="tag blue">サイドチェンジ</span>
+    <h3>左に集める → 右へ大きくパス → 1対1</h3>
+    <p><strong>覚え方：</strong> 「左に集めて → 右へ！ 行け！」</p>
 
     <ol class="step-list">
-      <li>左サイド（LM+LB）にボールを集中させ、<strong>相手MF/DFを左に引き寄せる</strong></li>
-      <li>CMまたはCBから<strong>ロングパスで右サイド</strong>（RM）へ一気にスイッチ</li>
-      <li>RMが相手DF1人との<strong>1vs1</strong>局面を作る</li>
-      <li>RMがドリブルで突破 → ゴール前へクロス or シュート</li>
-      <li>ST＋CMがゴール前で走り込み</li>
+      <li>左サイド（LM+LB）にボールを集める → 相手が左に寄せてくる</li>
+      <li>CMまたはCBから<strong>右サイド（RM）へ大きくパス</strong></li>
+      <li>RMが相手DF1人と<strong>1対1</strong></li>
+      <li>RMが前にドリブル → ゴール前へクロス or シュート</li>
+      <li>ST+CMがゴール前で待つ</li>
     </ol>
-    <div class="highlight"><strong>ポイント：</strong> 8人制はピッチが狭いので、スイッチのタイミングが早いほど効果的。CBから直接RMへ送る勇気も必要。</div>
+    <div class="kids-quote"><strong>声かけ：</strong>「右！ 右！ 行け！ 1対1！」</div>
+    <div class="highlight"><strong>ポイント：</strong> 反対サイドに素早くパスを出す勇気が大事。RMがフリーになったらチャンス！</div>
   </div>
 </section>
 
 <!-- ===== 攻撃テンプレート ===== -->
 <section id="templates">
-  <h2>📝 攻撃テンプレート — 試合前チェックリスト</h2>
-  <p style="margin-bottom:1.5rem; color:var(--muted);">試合前にチーム全員で確認する「攻め方の型」です。状況に応じて使い分けましょう。</p>
+  <h2>📝 攻め方テンプレート — 試合前に決めておく</h2>
+  <p style="margin-bottom:1.5rem; color:var(--muted);">試合前にコーチが子どもたちに「今日はこの攻め方で行こう」と伝えるための型です。</p>
 
   <div class="card">
-    <h3>テンプレート A：支配型（相手より上手いチーム向け）</h3>
+    <h3>テンプレート A：パスで攻める（上手いチーム向け）</h3>
     <table class="comparison-table">
       <tr><th>局面</th><th>やること</th><th>担当</th></tr>
       <tr><td>GKから</td><td>CBへ。相手ST1人なので余裕を持って</td><td>GK → CB</td></tr>
@@ -782,11 +873,12 @@
       <tr><td>前線</td><td>サイドオーバーラップ or インサイドカット</td><td>LM/RM + LB/RB</td></tr>
       <tr><td>決定打</td><td>クロス or スルーパス → ST</td><td>ST + CM</td></tr>
     </table>
-    <p><strong>守備：</strong> ハイプレス。相手ビルドアップを妨害 → 奪取即攻撃</p>
+    <p><strong>守り：</strong> 前からボールを奪りに行く。取ったらすぐ攻める</p>
+    <div class="kids-quote"><strong>子どもへの説明：</strong>「今日はパスを大切にして、みんなでボールを回そう！」</div>
   </div>
 
   <div class="card">
-    <h3>テンプレート B：カウンター型（相手より速い・守備的チーム向け）</h3>
+    <h3>テンプレート B：守って速攻（守備が強いチーム向け）</h3>
     <table class="comparison-table">
       <tr><th>局面</th><th>やること</th><th>担当</th></tr>
       <tr><td>GKから</td><td>ロングパスでST or サイドへ。無理にビルドしない</td><td>GK → ST/LM/RM</td></tr>
@@ -795,11 +887,12 @@
       <tr><td>前線</td><td>3対2 or 2対1。素早くゴール前</td><td>ST + LM/RM</td></tr>
       <tr><td>決定打</td><td>STのシュート or 横パス → トゥータッチ</td><td>ST → LM/RM</td></tr>
     </table>
-    <p><strong>守備：</strong> ローブロック。ペナルティエリア前で人数を固める</p>
+    <p><strong>守り：</strong> ゴール前で人数を固める。取ったら3秒で前へ</p>
+    <div class="kids-quote"><strong>子どもへの説明：</strong>「守って、取ったら走って前へ！ 3秒ルール！」</div>
   </div>
 
   <div class="card">
-    <h3>テンプレート C：バランス型（万能・初めてのチーム向け）</h3>
+    <h3>テンプレート C：バランス型（初めてのチーム・低学年向け）</h3>
     <table class="comparison-table">
       <tr><th>局面</th><th>やること</th><th>担当</th></tr>
       <tr><td>GKから</td><td>CBへ。CBが状況を見てサイド or 中央</td><td>GK → CB → CM/LB/RB</td></tr>
@@ -808,7 +901,8 @@
       <tr><td>前線</td><td>サイドからクロス or 中央突破</td><td>LM/RM + ST</td></tr>
       <tr><td>決定打</td><td>ゴール前に人数を送る（最低3人）</td><td>ST + CM + LM/RM</td></tr>
     </table>
-    <p><strong>守備：</strong> ミッドブロック。中盤で奪ってから攻撃に切り替え</p>
+    <p><strong>守り：</strong> 中盤で一緒に守る。取ったら前へ</p>
+    <div class="kids-quote"><strong>子どもへの説明：</strong>「パスを出して、出したら走る！ それだけでOK！」</div>
   </div>
 
   <div class="card">
@@ -821,6 +915,78 @@
       <tr><td>相手が守備的</td><td>A（支配型）</td><td>引き出してから攻める</td></tr>
       <tr><td>相手が攻撃的</td><td>B（カウンター型）</td><td>裏スペースを突く</td></tr>
     </table>
+  </div>
+</section>
+
+<!-- ===== 声かけ集 ===== -->
+<section id="voices">
+  <h2>📣 コーチの声かけ集 — そのまま使える</h2>
+  <p style="margin-bottom:1.5rem; color:var(--muted);">試合中・練習中にそのまま使える声かけです。短く、はっきり、元気よく！</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>攻撃の声かけ</h3>
+      <ul>
+        <li>「<strong>パス！ パス！</strong>」— ドリブルばかりさせない</li>
+        <li>「<strong>出したら走れ！</strong>」— パス＆ムーブの基本</li>
+        <li>「<strong>広げろ！</strong>」— サイドに散らばる</li>
+        <li>「<strong>前！ 前！</strong>」— 前に進む</li>
+        <li>「<strong>シュート！</strong>」— チャンスなら迷わず蹴る</li>
+        <li>「<strong>クロス！</strong>」— サイドからゴール前へ</li>
+        <li>「<strong>1対1！ 行け！</strong>」— ドリブルチャンス</li>
+        <li>「<strong>右！ / 左！</strong>」— サイドチェンジ</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>守備の声かけ</h3>
+      <ul>
+        <li>「<strong>寄せろ！</strong>」— 相手に近づく</li>
+        <li>「<strong>一緒に行け！</strong>」— 複数人でプレス</li>
+        <li>「<strong>取れ！</strong>」— ボールを奪う</li>
+        <li>「<strong>ライン！</strong>」— 一列にそろえる</li>
+        <li>「<strong>マーク！</strong>」— 相手選手をマーク</li>
+        <li>「<strong>下がれ！</strong>」— 守備位置に戻る</li>
+        <li>「<strong>カバー！</strong>」— 味方の裏を守る</li>
+        <li>「<strong>取った！ 前！</strong>」— 奪取後すぐ攻撃</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>全体の声かけ</h3>
+      <ul>
+        <li>「<strong>声出せ！</strong>」— コミュニケーション</li>
+        <li>「<strong>こっち！ こっち！</strong>」— パスを求める</li>
+        <li>「<strong>ナイス！</strong>」— 良いプレーを褒める</li>
+        <li>「<strong>次行こう！</strong>」— ミス後の切り替え</li>
+        <li>「<strong>走れ！</strong>」— ボールを持っていなくても走る</li>
+        <li>「<strong>見て！ 見て！</strong>」— 周りを見る</li>
+        <li>「<strong>仲間！ 仲間！</strong>」— 味方を見る</li>
+        <li>「<strong>楽しめ！</strong>」— 最後に忘れずに</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>ポジション別の声かけ</h3>
+      <table class="comparison-table">
+        <tr><th>ポジ</th><th>声かけ例</th></tr>
+        <tr><td>GK</td><td>「上！ 上！」「右！」「左！」（指示）</td></tr>
+        <tr><td>CB</td><td>「落ち着け！」「前出して！」</td></tr>
+        <tr><td>LB/RB</td><td>「上がれ！」「戻れ！」</td></tr>
+        <tr><td>CM</td><td>「前見て！」「サイド行け！」</td></tr>
+        <tr><td>LM/RM</td><td>「行け！」「クロス！」「戻れ！」</td></tr>
+        <tr><td>ST</td><td>「走れ！」「下がれ！」「シュート！」</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⚠️ 声かけのコツ（コーチ向け）</h3>
+    <ul>
+      <li><strong>短く：</strong> 1文10文字以内が理想。「パス！ 走れ！」</li>
+      <li><strong>具体的に：</strong> 「頑張れ」より「前の人にパス！」</li>
+      <li><strong>否定的より肯定的：</strong> 「ダメ」より「次行こう！」</li>
+      <li><strong>名前を呼ぶ：</strong> 「田中、パス！」の方が伝わる</li>
+      <li><strong>試合中は30秒以内：</strong> 長い説明はハーフタイムに</li>
+      <li><strong>褒める：</strong> 良いプレーは必ず「ナイス！」</li>
+    </ul>
   </div>
 </section>
 
@@ -878,51 +1044,95 @@
 
 <!-- ===== 練習メニュー ===== -->
 <section id="training">
-  <h2>🏃 練習メニュー</h2>
+  <h2>🏃 小学生向け 練習メニュー</h2>
+
+  <div class="card">
+    <h3>練習の基本ルール（コーチ向け）</h3>
+    <ul>
+      <li><strong>1つの練習は15分以内</strong> — 小学生の集中力に合わせる</li>
+      <li><strong>ボール触る時間を最大化</strong> — 列に並んで待たせない</li>
+      <li><strong>ゲーム形式を多めに</strong> — 楽しさが一番</li>
+      <li><strong>全員同じポジションを経験</strong> — FWばかりやGKばかりにしない</li>
+      <li><strong>最後に必ず試合形式</strong> — 練習の成果を試す時間</li>
+    </ul>
+  </div>
 
   <div class="card-grid">
     <div class="card">
-      <h3>パス＆ムーブ（15分）</h3>
+      <h3>① パス＆走る（10分）</h3>
       <ul>
-        <li>3人三角パス → 8人制の基本</li>
-        <li>1タッチ・2タッチの切替</li>
-        <li>「パス → 走る → 受ける」の繰り返し</li>
+        <li>3人1組で三角パス</li>
+        <li>「パス → 走る → 受ける」を繰り返す</li>
+        <li>1タッチパスに挑戦（慣れたら）</li>
+        <li><strong>声かけ：</strong>「出したら走れ！」</li>
       </ul>
     </div>
     <div class="card">
-      <h3>サイドオーバーラップ（15分）</h3>
+      <h3>② サイド攻撃（10分）</h3>
       <ul>
-        <li>LM+LBの2対1ドリル</li>
-        <li>オーバーラップのタイミング合わせ</li>
-        <li>クロス → STのヘディング/ボレー</li>
+        <li>LM+LBの2人でサイドを攻める</li>
+        <li>LBが前に上がるタイミング合わせ</li>
+        <li>ゴール前へクロス → STがシュート</li>
+        <li><strong>声かけ：</strong>「前上がれ！ クロス！」</li>
       </ul>
     </div>
     <div class="card">
-      <h3>3対2 カウンター（15分）</h3>
+      <h3>③ 3対2 速攻（10分）</h3>
       <ul>
-        <li>中盤で奪取 → 3人で前線へ</li>
-        <li>3秒ルールを徹底</li>
-        <li>ST+LM+RMの走り方を統一</li>
+        <li>中盤でボールを置いて、奪いに行く</li>
+        <li>奪ったら3人で前へ走る</li>
+        <li>3秒以内にゴール前まで</li>
+        <li><strong>声かけ：</strong>「取った！ 走れ！」</li>
       </ul>
     </div>
     <div class="card">
-      <h3>5対5 ゲーム形式（20分）</h3>
+      <h3>④ ミニゲーム 4対4（15分）</h3>
       <ul>
-        <li>実際の3-3-1（GK除く）で対戦</li>
+        <li>小さいコートで4対4（GK除く）</li>
+        <li>今日の攻撃パターン1つを意識</li>
+        <li>得点したら「どうやって点取った？」と聞く</li>
+        <li><strong>声かけ：</strong>「ナイス！ 次も行こう！」</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>⑤ 8人制ゲーム（15分）</h3>
+      <ul>
+        <li>実際の3-3-1で対戦</li>
         <li>テンプレートA/B/Cを交代で試す</li>
-        <li>試合後に振り返り（5分）</li>
+        <li>1本10分 × 2本</li>
+        <li>ハーフタイムに1分だけ振り返り</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>⑥ シュート練習（10分）</h3>
+      <ul>
+        <li>ゴール前からシュート（近距離から）</li>
+        <li>両足で蹴れるように（利き足だけに偏らない）</li>
+        <li>「迷わず蹴る」ことを褒める</li>
+        <li><strong>声かけ：</strong>「シュート！ ナイス！」</li>
       </ul>
     </div>
   </div>
 
   <div class="card">
-    <h3>試合前ミーティング（5分で確認）</h3>
+    <h3>試合前ミーティング（3分・子ども向け）</h3>
     <ol>
-      <li>今日のテンプレートは A / B / C のどれか？</li>
-      <li>セットプレーの担当確認（CK/FK蹴り手、ニア/ファー）</li>
-      <li>守備のライン：ハイ / ミドル / ロー のどれか？</li>
-      <li>STの動き：下がる？裏走る？両方？</li>
-      <li>声出し：GKとCBが最後方から指示</li>
+      <li>「今日の作戦は <strong>A / B / C</strong> のどれか？」（1つだけ）</li>
+      <li>「攻撃パターンは <strong>○番</strong> を使おう！」（1つだけ）</li>
+      <li>「CK/FKは <strong>名前</strong> が蹴るよ」</li>
+      <li>「守るときは <strong>みんなで下がって</strong> 人数をそろえよう」</li>
+      <li>「<strong>声を出して、楽しもう！</strong>」</li>
+    </ol>
+    <div class="kids-quote"><strong>コツ：</strong> 指示は3つ以内。多すぎると子どもは覚えられない。</div>
+  </div>
+
+  <div class="card">
+    <h3>試合後の振り返り（3分・子ども向け）</h3>
+    <ol>
+      <li>「今日 <strong>良かったこと</strong> は？」（子どもに聞く）</li>
+      <li>「<strong>ナイスプレー</strong> 賞」（1人ずつ具体的に褒める）</li>
+      <li>「次は <strong>ここを意識</strong> しよう」（1つだけ改善点）</li>
+      <li>「お疲れさま！ サッカー楽しかった？」</li>
     </ol>
   </div>
 </section>
@@ -930,8 +1140,8 @@
 </main>
 
 <footer>
-  <p>8人制サッカー 3-3-1 フォーメーション戦術ガイド</p>
-  <p>Jリーグ・強豪チームの戦術思想を8人制に応用 | 2026</p>
+  <p>小学生 8人制サッカー 3-3-1 フォーメーション戦術ガイド</p>
+  <p>コーチ・保護者向け | Jリーグの考え方を小学生レベルに応用 | 2026</p>
 </footer>
 
 </body>

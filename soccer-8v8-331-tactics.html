@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小学生 8人制サッカー 3-3-1 戦術ガイド</title>
+  <style>
+    :root {
+      --pitch-green: #2d6a3f;
+      --pitch-dark: #245a34;
+      --line-white: rgba(255,255,255,0.85);
+      --accent: #e63946;
+      --accent-blue: #1d4ed8;
+      --accent-yellow: #f59e0b;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e3a5f 0%, var(--pitch-green) 100%);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    header h1 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: rgba(255,255,255,0.85);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    nav {
+      background: var(--card);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--accent-yellow); }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: var(--accent-yellow);
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      color: #60a5fa;
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    h4 {
+      font-size: 1rem;
+      color: var(--muted);
+      margin: 1rem 0 0.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .tag.blue { background: var(--accent-blue); }
+    .tag.yellow { background: var(--accent-yellow); color: #1e293b; }
+    .tag.green { background: var(--pitch-green); }
+
+    ul, ol {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    li { margin-bottom: 0.4rem; }
+
+    .pitch-container {
+      background: var(--pitch-green);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1rem 0;
+      border: 2px solid var(--border);
+    }
+
+    .pitch {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2/3;
+      max-width: 400px;
+      margin: 0 auto;
+      background: repeating-linear-gradient(
+        0deg,
+        var(--pitch-green),
+        var(--pitch-green) 10%,
+        var(--pitch-dark) 10%,
+        var(--pitch-dark) 20%
+      );
+    }
+
+    .pitch::before {
+      content: "";
+      position: absolute;
+      inset: 5%;
+      border: 2px solid var(--line-white);
+    }
+
+    .pitch::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      right: 5%;
+      height: 2px;
+      background: var(--line-white);
+    }
+
+    .center-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20%;
+      height: 13.3%;
+      border: 2px solid var(--line-white);
+      border-radius: 50%;
+    }
+
+    .penalty-area {
+      position: absolute;
+      left: 20%;
+      right: 20%;
+      height: 18%;
+      border: 2px solid var(--line-white);
+    }
+
+    .penalty-area.top { top: 5%; border-top: none; }
+    .penalty-area.bottom { bottom: 5%; border-bottom: none; }
+
+    .player {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: bold;
+      transform: translate(-50%, -50%);
+      border: 2px solid white;
+      z-index: 10;
+    }
+
+    .player.gk { background: #f59e0b; color: #1e293b; }
+    .player.def { background: #3b82f6; color: white; }
+    .player.mid { background: #10b981; color: white; }
+    .player.fwd { background: #ef4444; color: white; }
+    .player.opp { background: #64748b; color: white; opacity: 0.7; }
+
+    .arrow {
+      position: absolute;
+      z-index: 5;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .legend-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid white;
+    }
+
+    .pattern-box {
+      background: #0f172a;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 0.75rem 0;
+    }
+
+    .step-list {
+      counter-reset: step;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .step-list li {
+      counter-increment: step;
+      padding: 0.75rem 0 0.75rem 3rem;
+      position: relative;
+      border-left: 2px solid var(--border);
+      margin-left: 1rem;
+    }
+
+    .step-list li::before {
+      content: counter(step);
+      position: absolute;
+      left: -1rem;
+      top: 0.65rem;
+      width: 2rem;
+      height: 2rem;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid var(--border);
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    .comparison-table th {
+      background: #0f172a;
+      color: var(--accent-yellow);
+    }
+
+    .comparison-table tr:nth-child(even) {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .highlight {
+      background: rgba(230, 57, 70, 0.15);
+      border-left: 3px solid var(--accent);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .two-col { grid-template-columns: 1fr; }
+      main { padding: 1rem; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .kids-quote {
+      background: rgba(245, 158, 11, 0.12);
+      border-left: 3px solid var(--accent-yellow);
+      padding: 0.75rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .kids-quote strong { color: var(--accent-yellow); }
+
+    .grade-badge {
+      display: inline-block;
+      background: #7c3aed;
+      color: white;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+    }
+
+    .diagram-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .diagram-card {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    .diagram-card h4 {
+      color: var(--accent-yellow);
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+    }
+
+    .diagram-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .diagram-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      margin: 1rem 0;
+      padding: 0.75rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+    }
+
+    .diagram-legend span {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .legend-ball { width: 12px; height: 12px; background: #fbbf24; border-radius: 50%; border: 2px solid white; }
+    .legend-follow { width: 12px; height: 12px; background: transparent; border: 2px dashed #34d399; border-radius: 50%; }
+    .legend-run { width: 20px; height: 2px; background: #ef4444; }
+    .legend-pass { width: 20px; height: 2px; background: #f59e0b; }
+
+    .grade6-banner {
+      background: linear-gradient(90deg, #7c3aed 0%, #1d4ed8 100%);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .grade6-banner h3 { color: white; margin: 0 0 0.5rem; }
+    .grade6-banner p { color: rgba(255,255,255,0.9); margin: 0; font-size: 0.95rem; }
+
+    .follow-table td:first-child { font-weight: bold; color: #60a5fa; white-space: nowrap; }
+
+    svg.tactical-svg {
+      width: 100%;
+      max-width: 450px;
+      display: block;
+      margin: 1rem auto;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚽ 小学生 8人制サッカー 3-3-1<br>戦術ガイド</h1>
+  <p>コーチ・保護者向け。Jリーグの考え方を小学生のレベルに落とし込んだ、攻め・守り・練習メニュー・子どもへの声かけ集</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#overview">概要</a></li>
+    <li><a href="#elementary">小学生の基本</a></li>
+    <li><a href="#grade6">6年生戦術</a></li>
+    <li><a href="#formation">フォーメーション</a></li>
+    <li><a href="#attack">攻め方</a></li>
+    <li><a href="#defense">守り方</a></li>
+    <li><a href="#patterns">攻撃パターン</a></li>
+    <li><a href="#templates">攻撃テンプレート</a></li>
+    <li><a href="#voices">声かけ集</a></li>
+    <li><a href="#setpiece">セットプレー</a></li>
+    <li><a href="#training">練習メニュー</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- ===== 概要 ===== -->
+<section id="overview">
+  <h2>📋 小学生 8人制 3-3-1 とは</h2>
+  <div class="card">
+    <p>小学生サッカーでは、<strong>5・6年生（高学年）</strong>の公式戦・リーグ戦で <strong>GK + フィールド7人の8人制</strong> がよく使われます。3-3-1は<strong>バランスが良く覚えやすい</strong>定番フォーメーションです。</p>
+    <br>
+    <p>プロ（Jリーグ）の考え方をそのまま使うのではなく、<strong>「パスを出す」「走る」「仲間を助ける」</strong> という基本を3-3-1の形で身につけさせるのが小学生サッカーの目的です。勝つことより、<strong>サッカーが好きになること・全員がボールに触れること</strong> を大切にしましょう。</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>小学生 8人制の特徴</h3>
+      <ul>
+        <li>ピッチが狭い → <strong>短いパス</strong>が効く（ドリブルばかりにしない）</li>
+        <li>人数が少ない → <strong>1人の空き</strong>が大きなチャンスになる</li>
+        <li>全員が攻撃にも守備にも関わる → <strong>「ボールを持ってない人も大切」</strong></li>
+        <li>サイド（横）を使うとゴールに近づきやすい</li>
+        <li>体力的にも無理のない試合時間（1本10〜15分 × 2本 など）</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>3-3-1の強み（小学生向け）</h3>
+      <ul>
+        <li>中盤3人で<strong>「三角形」</strong>を作りやすい</li>
+        <li>守るときはみんなで下がって<strong>人数をそろえやすい</strong></li>
+        <li>DF3人で守備の土台が作れる（小学生に安心感）</li>
+        <li>FW1人に集中 → ゴール前に行く役割がはっきりする</li>
+        <li>ポジション名が覚えやすい（コーチの指示が伝わりやすい）</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 小学生の基本 ===== -->
+<section id="elementary">
+  <h2>👦 小学生サッカーで大切なこと</h2>
+
+  <div class="card">
+    <h3>学年別の目安</h3>
+    <table class="comparison-table">
+      <tr><th>学年</th><th>重点</th><th>3-3-1の使い方</th></tr>
+      <tr>
+        <td><strong>3〜4年生</strong><span class="grade-badge">低学年</span></td>
+        <td>ボールに触れる・パス・ドリブル・楽しさ</td>
+        <td>まずは「守る人」「攻める人」の大まかな役割だけ。細かい戦術は後回し</td>
+      </tr>
+      <tr>
+        <td><strong>5年生</strong><span class="grade-badge">高学年</span></td>
+        <td>ポジションの役割・パス＆走る・声を出す</td>
+        <td>3-3-1の形を意識。攻撃パターン1〜2個を練習で覚える</td>
+      </tr>
+      <tr>
+        <td><strong>6年生</strong><span class="grade-badge">高学年</span></td>
+        <td>チーム戦術・セットプレー・試合の読み</td>
+        <td><a href="#grade6" style="color:#60a5fa;">6年生戦術セクション</a>でフォロー位置・攻め方バリエーションを本格運用</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>🎯 小学生に優先して教える5つのこと</h3>
+      <ol>
+        <li><strong>パスを出す</strong> — 近くの仲間へ。強すぎず、弱すぎず</li>
+        <li><strong>パスを出したら走る</strong> — ボールを持ってない時間こそチャンス</li>
+        <li><strong>声を出す</strong> — 「こっち！」「マーク！」「上がれ！」</li>
+        <li><strong>ボールを奪ったら前を向く</strong> — すぐ攻撃に切り替える</li>
+        <li><strong>味方を助ける</strong> — 近くにいる仲間の近くを守る・サポートする</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>⚠️ 小学生サッカーで避けたいこと</h3>
+      <ul>
+        <li>1人にボールを集中させすぎる（全員が触れない）</li>
+        <li>難しい専門用語ばかり使う（子どもが混乱する）</li>
+        <li>試合中に長い説教（30秒以内の短い指示に）</li>
+        <li>結果（勝ち負け）だけを追いすぎる</li>
+        <li>同じ子をずっと同じポジションに固定する</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>8人制のルール（よく使われる目安）</h3>
+    <ul>
+      <li><strong>ピッチ：</strong> 約40m × 25m（大会により異なる）</li>
+      <li><strong>ゴール：</strong> 高さ約2m × 幅約5m</li>
+      <li><strong>人数：</strong> GK1 + フィールド7 = 8人</li>
+      <li><strong>オフサイド：</strong> 多くの大会で<strong>なし</strong>（小学生は走り込みやすい！）</li>
+      <li><strong>スローイン：</strong> 足を浮かせず、両手で頭の後ろから投げる</li>
+      <li><strong>ゴールキック：</strong> 手で投げる or 足で蹴る（大会ルールを確認）</li>
+    </ul>
+    <div class="highlight"><strong>ポイント：</strong> オフサイドがないので、FW（ST）は積極的に相手ゴール前を走り回ってOK！</div>
+  </div>
+</section>
+
+<!-- ===== フォーメーション ===== -->
+<section id="formation">
+  <h2>🏟️ フォーメーションとポジション</h2>
+
+  <div class="two-col">
+    <div>
+      <div class="pitch-container">
+        <div class="pitch">
+          <div class="center-circle"></div>
+          <div class="penalty-area top"></div>
+          <div class="penalty-area bottom"></div>
+          <!-- GK -->
+          <div class="player gk" style="left:50%; top:92%;">GK</div>
+          <!-- DF -->
+          <div class="player def" style="left:20%; top:75%;">LB</div>
+          <div class="player def" style="left:50%; top:78%;">CB</div>
+          <div class="player def" style="left:80%; top:75%;">RB</div>
+          <!-- MF -->
+          <div class="player mid" style="left:25%; top:52%;">LM</div>
+          <div class="player mid" style="left:50%; top:48%;">CM</div>
+          <div class="player mid" style="left:75%; top:52%;">RM</div>
+          <!-- FW -->
+          <div class="player fwd" style="left:50%; top:22%;">ST</div>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#f59e0b;"></div>GK</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#3b82f6;"></div>DF（3人）</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#10b981;"></div>MF（3人）</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#ef4444;"></div>FW（1人）</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h3>各ポジションの役割（小学生向け）</h3>
+        <table class="comparison-table">
+          <tr><th>ポジ</th><th>やること</th><th>子どもへの言い方</th></tr>
+          <tr>
+            <td><strong>GK</strong><br>（キーパー）</td>
+            <td>ゴールを守る。仲間にパスを出して攻撃を始める。全体を見て声を出す</td>
+            <td>「ゴールを守って、蹴り出したらみんなにパス！」</td>
+          </tr>
+          <tr>
+            <td><strong>CB</strong><br>（センターバック）</td>
+            <td>真ん中の守備。相手の攻撃を止める。キーパーからボールをもらって前に出す</td>
+            <td>「真ん中を守る番長！ボールをもらったらサイドか前にパス」</td>
+          </tr>
+          <tr>
+            <td><strong>LB/RB</strong><br>（サイドの守備）</td>
+            <td>左右の守備。攻めるときは前に上がってパスをもらう</td>
+            <td>「サイドを守って、攻めるときは前に上がって！」</td>
+          </tr>
+          <tr>
+            <td><strong>CM</strong><br>（センター）</td>
+            <td>真ん中でボールをつなぐ。前にも後ろにもパス。攻守の切り替え役</td>
+            <td>「みんなの真ん中！ボールをつないで前に出すのが仕事」</td>
+          </tr>
+          <tr>
+            <td><strong>LM/RM</strong><br>（サイド）</td>
+            <td>左右でボールを受ける。前にドリブル or パス。守るときは下がる</td>
+            <td>「サイドでボールをもらって、前に行くかパスを出す！」</td>
+          </tr>
+          <tr>
+            <td><strong>ST</strong><br>（ストライカー）</td>
+            <td>ゴールの前でシュート。相手DFを引きつけて仲間にスペースを作る</td>
+            <td>「ゴールを狙う人！下がってから走って、シュートチャンスを作ろう」</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 攻め方 ===== -->
+<section id="attack">
+  <h2>⚔️ 攻め方 — 小学生向け 3つの型</h2>
+
+  <div class="card">
+    <h3>基本の流れ：「パス → 走る → シュート」</h3>
+    <p>プロチーム（Jリーグ）も同じ流れです。小学生にはこの3ステップで教えましょう。</p>
+    <ol class="step-list">
+      <li><strong>自陣（うちのゴール側）</strong> — キーパー・DFから近くの仲間へパス。無理に前に行かない</li>
+      <li><strong>中盤（真ん中）</strong> — サイド（LM/RM）やセンター（CM）でボールをつなぐ。相手が寄せてきたら反対サイドへ</li>
+      <li><strong>前（相手ゴール側）</strong> — ゴール前まで行ったらシュート or 仲間へパス。ゴール前に人数を送る</li>
+    </ol>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="tag">基本型</span>
+      <h3>① パスでつなぐ攻撃</h3>
+      <ul>
+        <li>ドリブルより<strong>パスを優先</strong>（小学生はドリブルばかりになりがち）</li>
+        <li>ボールを持っている人の<strong>近くに仲間が2人</strong>いる状態を作る</li>
+        <li>相手が寄せてきたら<strong>反対サイド</strong>へ素早くパス</li>
+        <li>焦らず、チャンスが来るまでボールを大切に</li>
+      </ul>
+      <div class="kids-quote"><strong>声かけ：</strong>「近くの人にパス！ 一人で行かないで！」</div>
+    </div>
+
+    <div class="card">
+      <span class="tag blue">速攻型</span>
+      <h3>② 奪ったらすぐ攻める</h3>
+      <ul>
+        <li>ボールを奪ったら<strong>すぐ前を向く</strong></li>
+        <li>3秒以内に前の仲間（ST・サイド）へパス</li>
+        <li>ST＋LM＋RMの<strong>3人で前に走る</strong></li>
+        <li>相手が戻る前にゴール前まで行く</li>
+      </ul>
+      <div class="kids-quote"><strong>声かけ：</strong>「取った！ 前見て！ 走れ！」</div>
+    </div>
+
+    <div class="card">
+      <span class="tag yellow">サイド型</span>
+      <h3>③ 横から攻める</h3>
+      <ul>
+        <li>サイド（LM/RM）でボールを受ける</li>
+        <li>サイドの守備（LB/RB）が<strong>前に上がって</strong>サポート</li>
+        <li>ゴール前へ<strong>センターリング</strong>（横パス）を出す</li>
+        <li>STがゴール前で待ってシュート</li>
+      </ul>
+      <div class="kids-quote"><strong>声かけ：</strong>「サイド行け！ 前上がれ！ クロス出して！」</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>攻めるときのみんなの動き</h3>
+    <p>ボールを持って前に行くとき、全員が少しずつ前に出ます。</p>
+    <ul>
+      <li><strong>LB/RB</strong> → サイドのラインまで前に上がる</li>
+      <li><strong>LM/RM</strong> → サイドでボールをもらう or 前に走る</li>
+      <li><strong>CM</strong> → ゴール前（ペナルティエリア前）で待つ</li>
+      <li><strong>CB</strong> → 一番後ろに残る（相手の速攻対策）</li>
+      <li><strong>ST</strong> → ゴール前 or 相手DFの前で待つ</li>
+    </ul>
+    <div class="kids-quote"><strong>声かけ：</strong>「ボール持ってる人の近くに行け！ 離れすぎないで！」</div>
+  </div>
+</section>
+
+<!-- ===== 6年生戦術 ===== -->
+<section id="grade6">
+  <h2>🎓 6年生専門 — 攻め方＆フォロー位置（図解）</h2>
+
+  <div class="grade6-banner">
+    <h3>6年生は「ボールを持ってない人の動き」が勝敗を決める</h3>
+    <p>パスを出す人の近くに必ず2〜3人がフォロー（サポート）位置に入る。以下の図解を試合前に確認しよう。</p>
+  </div>
+
+  <div class="diagram-legend">
+    <span><span class="legend-ball"></span> ボール保持者</span>
+    <span><span class="legend-follow"></span> フォロー位置（パスを受けられる場所）</span>
+    <span><span class="legend-pass"></span> パスの方向</span>
+    <span><span class="legend-run"></span> 走り込み</span>
+  </div>
+
+  <div class="card">
+    <h3>6年生の目標</h3>
+    <div class="card-grid">
+      <div class="card" style="margin:0;">
+        <ul>
+          <li>ボール保持者の<strong>近・中・遠</strong>にフォロー3人を配置できる</li>
+          <li>サイド攻撃で<strong>LB/RBの前上がり</strong>と連動できる</li>
+          <li>奪取後<strong>3秒以内</strong>に走り込み先を決められる</li>
+        </ul>
+      </div>
+      <div class="card" style="margin:0;">
+        <ul>
+          <li>相手が左に寄せたら<strong>右へスイッチ</strong>できる</li>
+          <li>STの<strong>下がり＋裏走り</strong>をチーム全員が理解している</li>
+          <li>セットプレーの<strong>役割分担</strong>が決まっている</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>フォローの3距離 — 6年生の基本ルール</h3>
+    <table class="comparison-table follow-table">
+      <tr><th>距離</th><th>誰が入る</th><th>役割</th><th>声かけ</th></tr>
+      <tr>
+        <td>近距離<br>（5m以内）</td>
+        <td>CM or サイドの隣</td>
+        <td>ボールを保持した人の<strong>すぐ横</strong>で受け返し。相手に奪られそうなときの出口</td>
+        <td>「こっち！ 返して！」</td>
+      </tr>
+      <tr>
+        <td>中距離<br>（10m前後）</td>
+        <td>LB/RB or LM/RM</td>
+        <td><strong>前に上がる</strong> or 斜め前で受ける。1対1 or クロスの起点</td>
+        <td>「上がれ！ 前！」</td>
+      </tr>
+      <tr>
+        <td>遠距離<br>（反対サイド）</td>
+        <td>反対サイドのLM/RM</td>
+        <td>相手が寄せてきたら<strong>反対サイドへ展開</strong>。1対1のチャンス</td>
+        <td>「右！ 左！ 行け！」</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ===== ボール位置別フォロー ===== -->
+  <h3>📍 ボールの位置別 — フォロー配置（6パターン）</h3>
+  <p style="color:var(--muted); margin-bottom:1rem;">ボールがどこにあるかで、フォロー位置が変わる。6年生はこの「型」を体に覚えよう。</p>
+
+  <div class="diagram-grid">
+
+    <!-- 図1: GK -->
+    <div class="diagram-card">
+      <h4>① GKがボール — ビルドアップ開始</h4>
+      <p>CBへ出して、サイドに広がる。CMは真ん中で受ける準備。</p>
+      <svg class="tactical-svg" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="400" fill="#2d6a3f" rx="6"/>
+        <rect x="15" y="15" width="270" height="370" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <line x1="15" y1="200" x2="285" y2="200" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <defs><marker id="ah1" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f59e0b"/></marker>
+        <marker id="rh1" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ef4444"/></marker></defs>
+        <!-- GK ボール -->
+        <circle cx="150" cy="350" r="14" fill="#fbbf24" stroke="white" stroke-width="2"/>
+        <text x="150" y="354" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">GK</text>
+        <!-- フォロー位置 -->
+        <circle cx="150" cy="280" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/>
+        <text x="150" y="284" text-anchor="middle" fill="#34d399" font-size="7">CB</text>
+        <circle cx="70" cy="260" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/>
+        <text x="70" y="264" text-anchor="middle" fill="#34d399" font-size="7">LB</text>
+        <circle cx="230" cy="260" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/>
+        <text x="230" y="264" text-anchor="middle" fill="#34d399" font-size="7">RB</text>
+        <circle cx="150" cy="220" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/>
+        <text x="150" y="224" text-anchor="middle" fill="#34d399" font-size="7">CM</text>
+        <!-- 前線 -->
+        <circle cx="60" cy="120" r="11" fill="#10b981" stroke="white" stroke-width="1.5"/><text x="60" y="124" text-anchor="middle" fill="white" font-size="6">LM</text>
+        <circle cx="240" cy="120" r="11" fill="#10b981" stroke="white" stroke-width="1.5"/><text x="240" y="124" text-anchor="middle" fill="white" font-size="6">RM</text>
+        <circle cx="150" cy="80" r="11" fill="#ef4444" stroke="white" stroke-width="1.5"/><text x="150" y="84" text-anchor="middle" fill="white" font-size="6">ST</text>
+        <!-- 矢印 -->
+        <line x1="150" y1="336" x2="150" y2="294" stroke="#f59e0b" stroke-width="2" marker-end="url(#ah1)"/>
+        <line x1="150" y1="266" x2="80" y2="266" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#ah1)"/>
+        <line x1="150" y1="266" x2="220" y2="266" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#ah1)"/>
+      </svg>
+      <ul style="font-size:0.85rem;">
+        <li><strong>近：</strong> CB（GKの真正面）</li>
+        <li><strong>中：</strong> LB/RB（左右に広がる）</li>
+        <li><strong>遠：</strong> LM/RM（前線で幅を取る）</li>
+      </ul>
+    </div>
+
+    <!-- 図2: CB -->
+    <div class="diagram-card">
+      <h4>② CBがボール — 左右への展開</h4>
+      <p>サイドへパス。CMが近距離、反対サイドが遠距離フォロー。</p>
+      <svg class="tactical-svg" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="400" fill="#2d6a3f" rx="6"/>
+        <rect x="15" y="15" width="270" height="370" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <line x1="15" y1="200" x2="285" y2="200" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <defs><marker id="ah2" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f59e0b"/></marker></defs>
+        <circle cx="150" cy="350" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="150" y="354" text-anchor="middle" fill="white" font-size="6">GK</text>
+        <circle cx="150" cy="280" r="14" fill="#fbbf24" stroke="white" stroke-width="2"/><text x="150" y="284" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">CB</text>
+        <circle cx="150" cy="220" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="150" y="224" text-anchor="middle" fill="#34d399" font-size="7">CM</text>
+        <circle cx="70" cy="260" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="70" y="264" text-anchor="middle" fill="#34d399" font-size="7">LB</text>
+        <circle cx="230" cy="260" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="230" y="264" text-anchor="middle" fill="#34d399" font-size="7">RB</text>
+        <circle cx="240" cy="120" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="240" y="124" text-anchor="middle" fill="#34d399" font-size="7">RM</text>
+        <circle cx="60" cy="120" r="11" fill="#10b981" stroke="white" stroke-width="1.5"/><text x="60" y="124" text-anchor="middle" fill="white" font-size="6">LM</text>
+        <circle cx="150" cy="80" r="11" fill="#ef4444" stroke="white" stroke-width="1.5"/><text x="150" y="84" text-anchor="middle" fill="white" font-size="6">ST</text>
+        <line x1="138" y1="280" x2="80" y2="260" stroke="#f59e0b" stroke-width="2" marker-end="url(#ah2)"/>
+        <line x1="162" y1="280" x2="220" y2="260" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#ah2)"/>
+        <line x1="150" y1="268" x2="150" y2="234" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#ah2)"/>
+      </svg>
+      <ul style="font-size:0.85rem;">
+        <li><strong>近：</strong> CM（CBの前）</li>
+        <li><strong>中：</strong> LB or RB（左右どちらか）</li>
+        <li><strong>遠：</strong> 反対サイドのLM/RM</li>
+      </ul>
+    </div>
+
+    <!-- 図3: 左サイド LM -->
+    <div class="diagram-card">
+      <h4>③ 左サイド（LM）がボール — サイド攻撃</h4>
+      <p>LB前上がり、CM中距離、RM遠距離。STはゴール前へ。</p>
+      <svg class="tactical-svg" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="400" fill="#2d6a3f" rx="6"/>
+        <rect x="15" y="15" width="270" height="370" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <line x1="15" y1="200" x2="285" y2="200" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <defs><marker id="ah3" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f59e0b"/></marker>
+        <marker id="rh3" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ef4444"/></marker></defs>
+        <circle cx="150" cy="350" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="150" y="354" text-anchor="middle" fill="white" font-size="6">GK</text>
+        <circle cx="150" cy="300" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="150" y="304" text-anchor="middle" fill="white" font-size="6">CB</text>
+        <circle cx="230" cy="300" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="230" y="304" text-anchor="middle" fill="white" font-size="6">RB</text>
+        <circle cx="50" cy="180" r="14" fill="#fbbf24" stroke="white" stroke-width="2"/><text x="50" y="184" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">LM</text>
+        <circle cx="40" cy="120" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="40" y="124" text-anchor="middle" fill="#34d399" font-size="7">LB</text>
+        <circle cx="130" cy="160" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="130" y="164" text-anchor="middle" fill="#34d399" font-size="7">CM</text>
+        <circle cx="240" cy="140" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="240" y="144" text-anchor="middle" fill="#34d399" font-size="7">RM</text>
+        <circle cx="120" cy="70" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="120" y="74" text-anchor="middle" fill="#34d399" font-size="7">ST</text>
+        <line x1="50" y1="166" x2="45" y2="134" stroke="#f59e0b" stroke-width="2" marker-end="url(#ah3)"/>
+        <line x1="62" y1="180" x2="118" y2="166" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#ah3)"/>
+        <line x1="40" y1="120" x2="110" y2="80" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#rh3)"/>
+        <line x1="50" y1="166" x2="230" y2="150" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#ah3)"/>
+      </svg>
+      <ul style="font-size:0.85rem;">
+        <li><strong>近：</strong> LB（前に上がって受ける）</li>
+        <li><strong>中：</strong> CM（斜め前・クロス受け）</li>
+        <li><strong>遠：</strong> RM（スイッチ先）</li>
+        <li><strong>走：</strong> ST（ニアポスト）</li>
+      </ul>
+    </div>
+
+    <!-- 図4: 右サイド RM -->
+    <div class="diagram-card">
+      <h4>④ 右サイド（RM）がボール — 右サイド攻撃</h4>
+      <p>左サイドのミラー。RB前上がり、CM中距離、LM遠距離。</p>
+      <svg class="tactical-svg" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="400" fill="#2d6a3f" rx="6"/>
+        <rect x="15" y="15" width="270" height="370" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <line x1="15" y1="200" x2="285" y2="200" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <defs><marker id="ah4" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f59e0b"/></marker>
+        <marker id="rh4" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ef4444"/></marker></defs>
+        <circle cx="150" cy="350" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="150" y="354" text-anchor="middle" fill="white" font-size="6">GK</text>
+        <circle cx="150" cy="300" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="150" y="304" text-anchor="middle" fill="white" font-size="6">CB</text>
+        <circle cx="70" cy="300" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="70" y="304" text-anchor="middle" fill="white" font-size="6">LB</text>
+        <circle cx="250" cy="180" r="14" fill="#fbbf24" stroke="white" stroke-width="2"/><text x="250" y="184" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">RM</text>
+        <circle cx="260" cy="120" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="260" y="124" text-anchor="middle" fill="#34d399" font-size="7">RB</text>
+        <circle cx="170" cy="160" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="170" y="164" text-anchor="middle" fill="#34d399" font-size="7">CM</text>
+        <circle cx="60" cy="140" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="60" y="144" text-anchor="middle" fill="#34d399" font-size="7">LM</text>
+        <circle cx="180" cy="70" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="180" y="74" text-anchor="middle" fill="#34d399" font-size="7">ST</text>
+        <line x1="250" y1="166" x2="255" y2="134" stroke="#f59e0b" stroke-width="2" marker-end="url(#ah4)"/>
+        <line x1="238" y1="180" x2="182" y2="166" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#ah4)"/>
+        <line x1="260" y1="120" x2="190" y2="80" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#rh4)"/>
+      </svg>
+      <ul style="font-size:0.85rem;">
+        <li><strong>近：</strong> RB（前上がり）</li>
+        <li><strong>中：</strong> CM（ファーポスト）</li>
+        <li><strong>遠：</strong> LM（スイッチ）</li>
+        <li><strong>走：</strong> ST（ニア or ファー）</li>
+      </ul>
+    </div>
+
+    <!-- 図5: CM -->
+    <div class="diagram-card">
+      <h4>⑤ CMがボール — 中央から攻める</h4>
+      <p>LM/RMが幅、STが前 or 下がり。LB/RBが後方サポート。</p>
+      <svg class="tactical-svg" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="400" fill="#2d6a3f" rx="6"/>
+        <rect x="15" y="15" width="270" height="370" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <line x1="15" y1="200" x2="285" y2="200" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <defs><marker id="ah5" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f59e0b"/></marker>
+        <marker id="rh5" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ef4444"/></marker></defs>
+        <circle cx="150" cy="350" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="150" y="354" text-anchor="middle" fill="white" font-size="6">GK</text>
+        <circle cx="70" cy="300" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="70" y="304" text-anchor="middle" fill="white" font-size="6">LB</text>
+        <circle cx="150" cy="300" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="150" y="304" text-anchor="middle" fill="white" font-size="6">CB</text>
+        <circle cx="230" cy="300" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="230" y="304" text-anchor="middle" fill="white" font-size="6">RB</text>
+        <circle cx="150" cy="200" r="14" fill="#fbbf24" stroke="white" stroke-width="2"/><text x="150" y="204" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">CM</text>
+        <circle cx="50" cy="150" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="50" y="154" text-anchor="middle" fill="#34d399" font-size="7">LM</text>
+        <circle cx="250" cy="150" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="250" y="154" text-anchor="middle" fill="#34d399" font-size="7">RM</text>
+        <circle cx="150" cy="120" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="150" y="124" text-anchor="middle" fill="#34d399" font-size="7">ST</text>
+        <circle cx="150" cy="70" r="10" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,2"/><text x="150" y="74" text-anchor="middle" fill="#ef4444" font-size="6">ST走</text>
+        <line x1="138" y1="200" x2="60" y2="158" stroke="#f59e0b" stroke-width="2" marker-end="url(#ah5)"/>
+        <line x1="162" y1="200" x2="240" y2="158" stroke="#f59e0b" stroke-width="2" marker-end="url(#ah5)"/>
+        <line x1="150" y1="186" x2="150" y2="134" stroke="#f59e0b" stroke-width="2" marker-end="url(#ah5)"/>
+        <line x1="150" y1="112" x2="150" y2="80" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#rh5)"/>
+      </svg>
+      <ul style="font-size:0.85rem;">
+        <li><strong>近：</strong> ST（下がって受ける or 前で待つ）</li>
+        <li><strong>中：</strong> LM/RM（左右の幅）</li>
+        <li><strong>遠：</strong> LB/RB（パスを出し直す出口）</li>
+        <li><strong>走：</strong> ST（下がってから前へ走る）</li>
+      </ul>
+    </div>
+
+    <!-- 図6: ST -->
+    <div class="diagram-card">
+      <h4>⑥ STがボール — 前線からつなぐ</h4>
+      <p>STが下がって受けたら、CM・サイドがフォロー。裏へ走る人を作る。</p>
+      <svg class="tactical-svg" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="400" fill="#2d6a3f" rx="6"/>
+        <rect x="15" y="15" width="270" height="370" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <line x1="15" y1="200" x2="285" y2="200" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <defs><marker id="ah6" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f59e0b"/></marker>
+        <marker id="rh6" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ef4444"/></marker></defs>
+        <circle cx="150" cy="350" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="150" y="354" text-anchor="middle" fill="white" font-size="6">GK</text>
+        <circle cx="150" cy="300" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="150" y="304" text-anchor="middle" fill="white" font-size="6">CB</text>
+        <circle cx="150" cy="160" r="14" fill="#fbbf24" stroke="white" stroke-width="2"/><text x="150" y="164" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">ST</text>
+        <circle cx="150" cy="210" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="150" y="214" text-anchor="middle" fill="#34d399" font-size="7">CM</text>
+        <circle cx="60" cy="180" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="60" y="184" text-anchor="middle" fill="#34d399" font-size="7">LM</text>
+        <circle cx="240" cy="180" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="240" y="184" text-anchor="middle" fill="#34d399" font-size="7">RM</text>
+        <circle cx="120" cy="80" r="10" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,2"/><text x="120" y="84" text-anchor="middle" fill="#ef4444" font-size="6">LM走</text>
+        <circle cx="180" cy="80" r="10" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,2"/><text x="180" y="84" text-anchor="middle" fill="#ef4444" font-size="6">RM走</text>
+        <line x1="150" y1="174" x2="150" y2="218" stroke="#f59e0b" stroke-width="2" marker-end="url(#ah6)"/>
+        <line x1="138" y1="160" x2="70" y2="178" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#ah6)"/>
+        <line x1="162" y1="160" x2="230" y2="178" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#ah6)"/>
+        <line x1="60" y1="180" x2="115" y2="90" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#rh6)"/>
+      </svg>
+      <ul style="font-size:0.85rem;">
+        <li><strong>近：</strong> CM（STのすぐ後ろで受ける）</li>
+        <li><strong>中：</strong> LM/RM（斜め前）</li>
+        <li><strong>走：</strong> LM/RM/ST（ゴール前へ走り込み）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== 攻め方バリエーション ===== -->
+  <h3>⚔️ 6年生向け 攻め方バリエーション（実践6選）</h3>
+  <p style="color:var(--muted); margin-bottom:1rem;">試合で使い分ける攻め方。それぞれフォロー位置付きの図解と、使う場面を記載。</p>
+
+  <!-- バリエーション1 -->
+  <div class="card">
+    <span class="tag">バリエーション1</span><span class="tag green">左サイド完結</span>
+    <h3>左サイドで攻め切る — 2対1 → クロス</h3>
+    <p><strong>使う場面：</strong> 相手DFが右寄り、左サイドにスペースがあるとき</p>
+    <div class="two-col">
+      <svg class="tactical-svg" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="420" fill="#2d6a3f" rx="6"/>
+        <rect x="15" y="15" width="270" height="390" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <rect x="80" y="15" width="140" height="70" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+        <defs><marker id="v1p" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f59e0b"/></marker>
+        <marker id="v1r" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ef4444"/></marker></defs>
+        <!-- 相手 -->
+        <circle cx="100" cy="100" r="9" fill="#64748b" stroke="white" stroke-width="1"/><text x="100" y="103" text-anchor="middle" fill="white" font-size="5">相DF</text>
+        <circle cx="200" cy="100" r="9" fill="#64748b" stroke="white" stroke-width="1"/><text x="200" y="103" text-anchor="middle" fill="white" font-size="5">相DF</text>
+        <!-- 自チーム -->
+        <circle cx="45" cy="200" r="13" fill="#fbbf24" stroke="white" stroke-width="2"/><text x="45" y="204" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">LM</text>
+        <circle cx="35" cy="130" r="12" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="35" y="134" text-anchor="middle" fill="#34d399" font-size="6">LB</text>
+        <circle cx="120" cy="170" r="12" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="120" y="174" text-anchor="middle" fill="#34d399" font-size="6">CM</text>
+        <circle cx="110" cy="60" r="12" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="110" y="64" text-anchor="middle" fill="#34d399" font-size="6">ST</text>
+        <circle cx="250" cy="180" r="11" fill="#10b981" stroke="white" stroke-width="1.5"/><text x="250" y="184" text-anchor="middle" fill="white" font-size="6">RM</text>
+        <circle cx="150" cy="350" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="150" y="354" text-anchor="middle" fill="white" font-size="6">CB</text>
+        <!-- 矢印 -->
+        <line x1="45" y1="187" x2="38" y2="142" stroke="#f59e0b" stroke-width="2" marker-end="url(#v1p)"/>
+        <line x1="35" y1="118" x2="100" y2="70" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#v1r)"/>
+        <text x="55" y="165" fill="#f59e0b" font-size="8">①LBへ</text>
+        <text x="55" y="95" fill="#ef4444" font-size="8">②クロス</text>
+        <text x="200" y="200" fill="#94a3b8" font-size="8">RM待機</text>
+      </svg>
+      <div>
+        <h4>フォロー配置</h4>
+        <table class="comparison-table follow-table">
+          <tr><th>選手</th><th>動き</th></tr>
+          <tr><td>LM</td><td>ボール保持。LBへパス or 1対1</td></tr>
+          <tr><td>LB</td><td>前上がり（近距離フォロー）→ クロス</td></tr>
+          <tr><td>CM</td><td>ペナルティ前（中距離）→ 2ndボール</td></tr>
+          <tr><td>ST</td><td>ニアポスト走り込み</td></tr>
+          <tr><td>RM</td><td>反対サイドで待機（遠距離）</td></tr>
+        </table>
+        <div class="kids-quote"><strong>決めゼリフ：</strong>「左！ 上がれ！ クロス！ ゴール前！」</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- バリエーション2 -->
+  <div class="card">
+    <span class="tag">バリエーション2</span><span class="tag blue">サイドチェンジ</span>
+    <h3>左に寄せて → 右へ一気にパス — 1対1</h3>
+    <p><strong>使う場面：</strong> 相手が左サイドに人数を寄せてきたとき</p>
+    <div class="two-col">
+      <svg class="tactical-svg" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="420" fill="#2d6a3f" rx="6"/>
+        <rect x="15" y="15" width="270" height="390" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <defs><marker id="v2p" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f59e0b"/></marker>
+        <marker id="v2r" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ef4444"/></marker></defs>
+        <circle cx="50" cy="200" r="13" fill="#fbbf24" stroke="white" stroke-width="2"/><text x="50" y="204" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">LM</text>
+        <circle cx="150" cy="220" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/><text x="150" y="224" text-anchor="middle" fill="white" font-size="6">CM</text>
+        <circle cx="250" cy="160" r="14" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="250" y="164" text-anchor="middle" fill="#34d399" font-size="7">RM</text>
+        <circle cx="150" cy="80" r="12" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="150" y="84" text-anchor="middle" fill="#34d399" font-size="6">ST</text>
+        <circle cx="80" cy="180" r="9" fill="#64748b" stroke="white" stroke-width="1"/><text x="80" y="183" text-anchor="middle" fill="white" font-size="5">相</text>
+        <circle cx="60" cy="220" r="9" fill="#64748b" stroke="white" stroke-width="1"/><text x="60" y="223" text-anchor="middle" fill="white" font-size="5">相</text>
+        <circle cx="220" cy="160" r="9" fill="#64748b" stroke="white" stroke-width="1"/><text x="220" y="163" text-anchor="middle" fill="white" font-size="5">相</text>
+        <line x1="150" y1="220" x2="235" y2="168" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#v2p)"/>
+        <line x1="250" y1="148" x2="250" y2="90" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#v2r)"/>
+        <text x="170" y="190" fill="#f59e0b" font-size="9">大きく右へ！</text>
+        <text x="255" y="120" fill="#ef4444" font-size="8">1対1</text>
+      </svg>
+      <div>
+        <h4>フォロー配置</h4>
+        <table class="comparison-table follow-table">
+          <tr><th>選手</th><th>動き</th></tr>
+          <tr><td>LM/LB</td><td>左にボールを集める（おとり）</td></tr>
+          <tr><td>CM/CB</td><td>右サイドへ<strong>大きくパス</strong></td></tr>
+          <tr><td>RM</td><td>右サイドで待つ（遠距離フォロー）→ 1対1</td></tr>
+          <tr><td>ST</td><td>ゴール前中央で走り込み</td></tr>
+          <tr><td>RB</td><td>RMの後方サポート</td></tr>
+        </table>
+        <div class="kids-quote"><strong>決めゼリフ：</strong>「右！ 右！ 行け！ 1対1！」</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- バリエーション3 -->
+  <div class="card">
+    <span class="tag">バリエーション3</span><span class="tag yellow">中央突破</span>
+    <h3>ST下がり → CM前進 → 裏パス</h3>
+    <p><strong>使う場面：</strong> 相手DFがSTをマークしすぎているとき</p>
+    <div class="two-col">
+      <svg class="tactical-svg" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="420" fill="#2d6a3f" rx="6"/>
+        <rect x="15" y="15" width="270" height="390" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <defs><marker id="v3p" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f59e0b"/></marker>
+        <marker id="v3r" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ef4444"/></marker></defs>
+        <circle cx="150" cy="350" r="11" fill="#3b82f6" stroke="white" stroke-width="1.5"/><text x="150" y="354" text-anchor="middle" fill="white" font-size="6">CB</text>
+        <circle cx="150" cy="240" r="13" fill="#fbbf24" stroke="white" stroke-width="2"/><text x="150" y="244" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">CM</text>
+        <circle cx="150" cy="170" r="12" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="150" y="174" text-anchor="middle" fill="#34d399" font-size="6">ST下</text>
+        <circle cx="150" cy="60" r="12" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/><text x="150" y="64" text-anchor="middle" fill="#ef4444" font-size="6">ST走</text>
+        <circle cx="60" cy="200" r="11" fill="#10b981" stroke="white" stroke-width="1.5"/><text x="60" y="204" text-anchor="middle" fill="white" font-size="6">LM</text>
+        <circle cx="240" cy="200" r="11" fill="#10b981" stroke="white" stroke-width="1.5"/><text x="240" y="204" text-anchor="middle" fill="white" font-size="6">RM</text>
+        <circle cx="130" cy="170" r="9" fill="#64748b" stroke="white" stroke-width="1"/><text x="130" y="173" text-anchor="middle" fill="white" font-size="5">相</text>
+        <circle cx="170" cy="170" r="9" fill="#64748b" stroke="white" stroke-width="1"/><text x="170" y="173" text-anchor="middle" fill="white" font-size="5">相</text>
+        <line x1="150" y1="350" x2="150" y2="254" stroke="#f59e0b" stroke-width="2" marker-end="url(#v3p)"/>
+        <line x1="150" y1="228" x2="150" y2="182" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#v3p)"/>
+        <line x1="150" y1="158" x2="150" y2="72" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#v3r)"/>
+        <line x1="150" y1="228" x2="150" y2="72" stroke="#f59e0b" stroke-width="2" marker-end="url(#v3p)"/>
+        <text x="165" y="200" fill="#f59e0b" font-size="8">CM前進</text>
+        <text x="165" y="110" fill="#ef4444" font-size="8">ST走</text>
+      </svg>
+      <div>
+        <h4>フォロー配置</h4>
+        <table class="comparison-table follow-table">
+          <tr><th>選手</th><th>動き</th></tr>
+          <tr><td>ST</td><td>①下がってDFを引く → ②一気に前へ走る</td></tr>
+          <tr><td>CM</td><td>ST下がりの隙に前進 → 裏パス</td></tr>
+          <tr><td>LM/RM</td><td>幅を取って相手MFを引きつける</td></tr>
+          <tr><td>CB</td><td>後方でカバー（奪られ対策）</td></tr>
+        </table>
+        <div class="kids-quote"><strong>決めゼリフ：</strong>「下がれ！ 前進！ 走れ！ パス！」</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- バリエーション4 -->
+  <div class="card">
+    <span class="tag">バリエーション4</span><span class="tag green">三角パス</span>
+    <h3>三角形パス — CM→LM→LB→クロス</h3>
+    <p><strong>使う場面：</strong> 相手に押されず、落ち着いて攻めたいとき</p>
+    <div class="two-col">
+      <svg class="tactical-svg" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="420" fill="#2d6a3f" rx="6"/>
+        <rect x="15" y="15" width="270" height="390" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <defs><marker id="v4p" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f59e0b"/></marker></defs>
+        <circle cx="150" cy="250" r="13" fill="#fbbf24" stroke="white" stroke-width="2"/><text x="150" y="254" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">CM</text>
+        <circle cx="55" cy="210" r="12" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="55" y="214" text-anchor="middle" fill="#34d399" font-size="6">LM</text>
+        <circle cx="40" cy="140" r="12" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="40" y="144" text-anchor="middle" fill="#34d399" font-size="6">LB</text>
+        <circle cx="110" cy="70" r="12" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="110" y="74" text-anchor="middle" fill="#34d399" font-size="6">ST</text>
+        <circle cx="250" cy="220" r="11" fill="#10b981" stroke="white" stroke-width="1.5"/><text x="250" y="224" text-anchor="middle" fill="white" font-size="6">RM</text>
+        <polygon points="150,250 55,210 40,140" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.6"/>
+        <line x1="138" y1="250" x2="65" y2="216" stroke="#f59e0b" stroke-width="2" marker-end="url(#v4p)"/>
+        <line x1="52" y1="210" x2="45" y2="148" stroke="#f59e0b" stroke-width="2" marker-end="url(#v4p)"/>
+        <line x1="40" y1="128" x2="105" y2="78" stroke="#f59e0b" stroke-width="2" marker-end="url(#v4p)"/>
+        <text x="90" y="235" fill="#f59e0b" font-size="8">①</text>
+        <text x="30" y="175" fill="#f59e0b" font-size="8">②</text>
+        <text x="60" y="100" fill="#f59e0b" font-size="8">③クロス</text>
+      </svg>
+      <div>
+        <h4>フォロー配置（三角の頂点）</h4>
+        <table class="comparison-table follow-table">
+          <tr><th>頂点</th><th>選手</th><th>次のパス先</th></tr>
+          <tr><td>①</td><td>CM</td><td>→ LM（左サイドへ）</td></tr>
+          <tr><td>②</td><td>LM</td><td>→ LB（前上がりへ）</td></tr>
+          <tr><td>③</td><td>LB</td><td>→ ST（ゴール前クロス）</td></tr>
+        </table>
+        <p style="font-size:0.85rem; color:var(--muted);">RMは反対サイドで幅。相手が寄せたらCM→RMへ変更。</p>
+        <div class="kids-quote"><strong>決めゼリフ：</strong>「三角！ パス！ パス！ クロス！」</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- バリエーション5 -->
+  <div class="card">
+    <span class="tag">バリエーション5</span><span class="tag blue">速攻</span>
+    <h3>奪取 → 3人走り込み — 3対2</h3>
+    <p><strong>使う場面：</strong> 中盤でボールを奪った直後。相手がバラバラのとき</p>
+    <div class="two-col">
+      <svg class="tactical-svg" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="420" fill="#2d6a3f" rx="6"/>
+        <rect x="15" y="15" width="270" height="390" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <defs><marker id="v5p" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f59e0b"/></marker>
+        <marker id="v5r" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ef4444"/></marker></defs>
+        <circle cx="150" cy="280" r="13" fill="#fbbf24" stroke="white" stroke-width="2"/><text x="150" y="284" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">CM</text>
+        <circle cx="150" cy="100" r="12" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/><text x="150" y="104" text-anchor="middle" fill="#ef4444" font-size="6">ST</text>
+        <circle cx="50" cy="120" r="12" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/><text x="50" y="124" text-anchor="middle" fill="#ef4444" font-size="6">LM</text>
+        <circle cx="250" cy="120" r="12" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/><text x="250" y="124" text-anchor="middle" fill="#ef4444" font-size="6">RM</text>
+        <circle cx="120" cy="80" r="9" fill="#64748b" stroke="white" stroke-width="1"/><text x="120" y="83" text-anchor="middle" fill="white" font-size="5">相</text>
+        <circle cx="180" cy="80" r="9" fill="#64748b" stroke="white" stroke-width="1"/><text x="180" y="83" text-anchor="middle" fill="white" font-size="5">相</text>
+        <line x1="150" y1="268" x2="150" y2="112" stroke="#f59e0b" stroke-width="2" marker-end="url(#v5p)"/>
+        <line x1="138" y1="280" x2="58" y2="128" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#v5r)"/>
+        <line x1="162" y1="280" x2="242" y2="128" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#v5r)"/>
+        <text x="100" y="200" fill="#ef4444" font-size="9">3秒以内！</text>
+        <text x="155" y="60" fill="#f59e0b" font-size="8">3対2</text>
+      </svg>
+      <div>
+        <h4>走り込み位置（奪取直後）</h4>
+        <table class="comparison-table follow-table">
+          <tr><th>選手</th><th>走る先</th></tr>
+          <tr><td>CM</td><td>ボール保持 → 最初のパスを出す</td></tr>
+          <tr><td>ST</td><td>中央・ゴール前へ一直線</td></tr>
+          <tr><td>LM</td><td>左サイド・ニアポスト</td></tr>
+          <tr><td>RM</td><td>右サイド・ファーポスト</td></tr>
+          <tr><td>DF</td><td>上がらない（カウンター対策）</td></tr>
+        </table>
+        <div class="kids-quote"><strong>決めゼリフ：</strong>「取った！ 前！ 走れ！ 3秒！」</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- バリエーション6 -->
+  <div class="card">
+    <span class="tag">バリエーション6</span><span class="tag yellow">ゴール前集中</span>
+    <h3>サイドから → ゴール前3人集中 — 数的有利</h3>
+    <p><strong>使う場面：</strong> サイドまで行けた。ゴール前に人数を送りたいとき</p>
+    <div class="two-col">
+      <svg class="tactical-svg" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="420" fill="#2d6a3f" rx="6"/>
+        <rect x="15" y="15" width="270" height="390" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+        <rect x="80" y="15" width="140" height="60" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+        <defs><marker id="v6p" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f59e0b"/></marker></defs>
+        <circle cx="40" cy="130" r="13" fill="#fbbf24" stroke="white" stroke-width="2"/><text x="40" y="134" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">LB</text>
+        <circle cx="100" cy="55" r="12" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="100" y="59" text-anchor="middle" fill="#34d399" font-size="6">ST</text>
+        <circle cx="150" cy="45" r="12" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="150" y="49" text-anchor="middle" fill="#34d399" font-size="6">CM</text>
+        <circle cx="200" cy="55" r="12" fill="none" stroke="#34d399" stroke-width="2" stroke-dasharray="4,2"/><text x="200" y="59" text-anchor="middle" fill="#34d399" font-size="6">RM</text>
+        <circle cx="50" cy="200" r="11" fill="#10b981" stroke="white" stroke-width="1.5"/><text x="50" y="204" text-anchor="middle" fill="white" font-size="6">LM</text>
+        <line x1="40" y1="118" x2="100" y2="67" stroke="#f59e0b" stroke-width="2" marker-end="url(#v6p)"/>
+        <line x1="40" y1="118" x2="150" y2="57" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#v6p)"/>
+        <line x1="40" y1="118" x2="195" y2="67" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#v6p)"/>
+        <text x="55" y="95" fill="#f59e0b" font-size="8">クロス</text>
+        <text x="110" y="35" fill="#34d399" font-size="8">3人集中</text>
+      </svg>
+      <div>
+        <h4>ゴール前フォロー（3人）</h4>
+        <table class="comparison-table follow-table">
+          <tr><th>位置</th><th>選手</th><th>役割</th></tr>
+          <tr><td>ニア</td><td>ST</td><td>ゴールに最も近い。ヘディング・足元</td></tr>
+          <tr><td>中央</td><td>CM</td><td>ペナルティスポット。2ndボール</td></tr>
+          <tr><td>ファー</td><td>RM</td><td>遠いポスト。浮いたボール</td></tr>
+        </table>
+        <div class="kids-quote"><strong>決めゼリフ：</strong>「ゴール前3人！ ニア！ ファー！」</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 状況別使い分け -->
+  <div class="card">
+    <h3>🔄 6年生 — 状況別 攻め方の使い分け</h3>
+    <table class="comparison-table">
+      <tr><th>試合の状況</th><th>おすすめ</th><th>フォローのポイント</th></tr>
+      <tr><td>相手より上手・支配したい</td><td>バリエーション4（三角パス）</td><td>常に近・中・遠の3人フォロー</td></tr>
+      <tr><td>左サイドにスペース</td><td>バリエーション1（左サイド完結）</td><td>LB前上がり＋RM待機</td></tr>
+      <tr><td>相手が左に寄せてくる</td><td>バリエーション2（サイドチェンジ）</td><td>RM遠距離フォロー</td></tr>
+      <tr><td>相手DFがSTをマーク</td><td>バリエーション3（中央突破）</td><td>ST下がり→裏走り</td></tr>
+      <tr><td>中盤で奪った</td><td>バリエーション5（速攻）</td><td>3秒以内・3人走り込み</td></tr>
+      <tr><td>サイドまで行けた</td><td>バリエーション6（ゴール前集中）</td><td>ニア・中央・ファー3人</td></tr>
+      <tr><td>リードしてる</td><td>バリエーション4 or 5</td><td>無理しない・カウンター</td></tr>
+      <tr><td>ビハインド</td><td>バリエーション1 or 3</td><td>積極的にゴール前へ人数</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>6年生 試合前チェック（1分）</h3>
+    <ol>
+      <li>今日の攻め方バリエーションは <strong>1〜6のどれ</strong>？（最大2個）</li>
+      <li>フォローの3距離を確認：「<strong>近・中・遠</strong>に人がいるか？」</li>
+      <li>サイドチェンジの合図：「<strong>右！ / 左！</strong>」</li>
+      <li>速攻の合図：「<strong>取った！ 3秒！</strong>」</li>
+      <li>セットプレー担当の最終確認</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== 守り方 ===== -->
+<section id="defense">
+  <h2>🛡️ 守り方 — 小学生向け</h2>
+
+  <div class="card">
+    <h3>守るときの基本：「みんなで下がって、人数をそろえる」</h3>
+    <p>8人制3-3-1で守るときは、<strong>DF3人 + MF2人</strong> が下がって守り、ST1人が相手のボール持ちを見ます。小学生には「みんなでゴールを守ろう」と伝えましょう。</p>
+    <div class="kids-quote"><strong>声かけ：</strong>「ボールより人！ 相手より人数多く守れ！」</div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>守備 ①：一列にそろえる</h3>
+      <ul>
+        <li>DFとMFの距離を<strong>近く</strong>保つ（離れすぎない）</li>
+        <li>縦（前後）のラインをそろえる → 裏へのパスを防ぐ</li>
+        <li>CBは一番後ろ。LB/RBは左右をカバー</li>
+        <li>相手ST1人にはCB+CMで2人で守る</li>
+      </ul>
+      <div class="kids-quote"><strong>声かけ：</strong>「ラインそろえて！ 離れないで！」</div>
+    </div>
+    <div class="card">
+      <h3>守備 ②：ボールを奪うタイミング</h3>
+      <ul>
+        <li><strong>前から攻める：</strong> ST+CMが相手に寄せて奪う（元気なチーム向け）</li>
+        <li><strong>中盤で待つ：</strong> 中盤で待って、横パスを出した瞬間に奪う（基本）</li>
+        <li><strong>ゴール前で固める：</strong> ゴール前に人数を集めて守る（リード中向け）</li>
+      </ul>
+      <div class="kids-quote"><strong>声かけ：</strong>「寄せろ！ 一緒に行け！ 取れ！」</div>
+    </div>
+    <div class="card">
+      <h3>守備 ③：奪ったらすぐ攻め</h3>
+      <ul>
+        <li>ボールを奪ったら<strong>すぐ前を向く</strong></li>
+        <li>ST+LM+RMが前に走り始める</li>
+        <li>CMが最初のパスを出す</li>
+        <li><strong>3秒ルール：</strong> 3秒以内に前の仲間へパス！</li>
+      </ul>
+      <div class="kids-quote"><strong>声かけ：</strong>「取った！ 前！ 走れ走れ！」</div>
+    </div>
+    <div class="card">
+      <h3>守備 ④：セットプレー</h3>
+      <ul>
+        <li><strong>FK（フリーキック）：</strong> 壁を2〜3人。残りはゴールを守る</li>
+        <li><strong>CK（コーナーキック）：</strong> ゴール前に人数を集める。1人1人マーク</li>
+        <li><strong>スローイン：</strong> 相手に近づきすぎない。ラインを保つ</li>
+        <li><strong>ゴールキック：</strong> DFラインを上げてコンパクトに</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>守備時のポジション配置</h3>
+    <div class="pitch-container">
+      <div class="pitch">
+        <div class="center-circle"></div>
+        <div class="penalty-area top"></div>
+        <div class="penalty-area bottom"></div>
+        <!-- 相手 -->
+        <div class="player opp" style="left:50%; top:15%;">相ST</div>
+        <div class="player opp" style="left:30%; top:30%;">相MF</div>
+        <div class="player opp" style="left:70%; top:30%;">相MF</div>
+        <!-- 自チーム守備 -->
+        <div class="player gk" style="left:50%; top:92%;">GK</div>
+        <div class="player def" style="left:20%; top:72%;">LB</div>
+        <div class="player def" style="left:50%; top:75%;">CB</div>
+        <div class="player def" style="left:80%; top:72%;">RB</div>
+        <div class="player mid" style="left:35%; top:55%;">LM</div>
+        <div class="player mid" style="left:65%; top:55%;">RM</div>
+        <div class="player fwd" style="left:50%; top:40%;">ST</div>
+        <div class="player mid" style="left:50%; top:58%;">CM</div>
+      </div>
+    </div>
+    <p style="text-align:center; color:var(--muted); font-size:0.85rem; margin-top:0.5rem;">
+      守備時：STが相手CBをマーク、CM+LM/RMが中盤ブロック、DF3が最終ライン
+    </p>
+  </div>
+</section>
+
+<!-- ===== 攻撃パターン ===== -->
+<section id="patterns">
+  <h2>🎯 試合で使える攻撃パターン（5選）</h2>
+  <p style="margin-bottom:1.5rem; color:var(--muted);">練習で何度もやって、試合で「決まってる動き」として使えるようにしましょう。5〜6年生向け。</p>
+
+  <!-- パターン1 -->
+  <div class="card">
+    <span class="tag">パターン1</span><span class="tag green">サイド攻撃</span>
+    <h3>サイドに出す → 前に上がる → クロス</h3>
+    <p><strong>覚え方：</strong> 「サイド → 上がれ → クロス」</p>
+
+    <svg class="tactical-svg" viewBox="0 0 300 450" xmlns="http://www.w3.org/2000/svg">
+      <rect width="300" height="450" fill="#2d6a3f" rx="8"/>
+      <rect x="15" y="15" width="270" height="420" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+      <line x1="15" y1="225" x2="285" y2="225" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+      <circle cx="150" cy="225" r="30" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+      <!-- 選手 -->
+      <circle cx="150" cy="400" r="12" fill="#f59e0b" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="404" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">GK</text>
+      <circle cx="80" cy="340" r="12" fill="#3b82f6" stroke="white" stroke-width="1.5"/>
+      <text x="80" y="344" text-anchor="middle" fill="white" font-size="7" font-weight="bold">LB</text>
+      <circle cx="150" cy="350" r="12" fill="#3b82f6" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="354" text-anchor="middle" fill="white" font-size="7" font-weight="bold">CB</text>
+      <circle cx="220" cy="340" r="12" fill="#3b82f6" stroke="white" stroke-width="1.5"/>
+      <text x="220" y="344" text-anchor="middle" fill="white" font-size="7" font-weight="bold">RB</text>
+      <circle cx="60" cy="240" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/>
+      <text x="60" y="244" text-anchor="middle" fill="white" font-size="7" font-weight="bold">LM</text>
+      <circle cx="150" cy="230" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="234" text-anchor="middle" fill="white" font-size="7" font-weight="bold">CM</text>
+      <circle cx="240" cy="240" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/>
+      <text x="240" y="244" text-anchor="middle" fill="white" font-size="7" font-weight="bold">RM</text>
+      <circle cx="150" cy="100" r="12" fill="#ef4444" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="104" text-anchor="middle" fill="white" font-size="7" font-weight="bold">ST</text>
+      <!-- 矢印 -->
+      <defs>
+        <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#f59e0b"/>
+        </marker>
+      </defs>
+      <line x1="150" y1="230" x2="60" y2="240" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <line x1="60" y1="240" x2="60" y2="160" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <line x1="80" y1="340" x2="40" y2="150" stroke="#60a5fa" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowhead)"/>
+      <line x1="40" y1="150" x2="150" y2="100" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <text x="100" y="200" fill="#f59e0b" font-size="9">①CM→LM</text>
+      <text x="30" y="130" fill="#60a5fa" font-size="9">②LB↑</text>
+      <text x="100" y="80" fill="#ef4444" font-size="9">③クロス→ST</text>
+    </svg>
+
+    <ol class="step-list">
+      <li>CM（センター）がボールを持ち、左サイドのLMへパス</li>
+      <li>LMがサイドでボールを保持。同時にLB（左の守備）が<strong>前に上がる</strong></li>
+      <li>LMはLBへパス、または前にドリブル</li>
+      <li>ゴール前へ<strong>横パス（クロス）</strong>。STがゴール前で待ってシュート！</li>
+    </ol>
+    <div class="kids-quote"><strong>声かけ：</strong>「左サイド！ 前上がれ！ クロス！ ゴール前行け！」</div>
+    <div class="highlight"><strong>ポイント：</strong> LBが前に上がるタイミングが大事。LMがボールを持っている間にLBが走る。</div>
+  </div>
+
+  <!-- パターン2 -->
+  <div class="card">
+    <span class="tag">パターン2</span><span class="tag blue">中央突破</span>
+    <h3>STが下がる → CM前進 → 裏へパス</h3>
+    <p><strong>覚え方：</strong> 「下がる → 前進 → 走れ」</p>
+
+    <svg class="tactical-svg" viewBox="0 0 300 450" xmlns="http://www.w3.org/2000/svg">
+      <rect width="300" height="450" fill="#2d6a3f" rx="8"/>
+      <rect x="15" y="15" width="270" height="420" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+      <line x1="15" y1="225" x2="285" y2="225" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+      <circle cx="150" cy="400" r="12" fill="#f59e0b" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="404" text-anchor="middle" fill="#1e293b" font-size="7" font-weight="bold">GK</text>
+      <circle cx="80" cy="340" r="12" fill="#3b82f6" stroke="white" stroke-width="1.5"/>
+      <text x="80" y="344" text-anchor="middle" fill="white" font-size="7" font-weight="bold">LB</text>
+      <circle cx="150" cy="350" r="12" fill="#3b82f6" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="354" text-anchor="middle" fill="white" font-size="7" font-weight="bold">CB</text>
+      <circle cx="220" cy="340" r="12" fill="#3b82f6" stroke="white" stroke-width="1.5"/>
+      <text x="220" y="344" text-anchor="middle" fill="white" font-size="7" font-weight="bold">RB</text>
+      <circle cx="60" cy="240" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/>
+      <text x="60" y="244" text-anchor="middle" fill="white" font-size="7" font-weight="bold">LM</text>
+      <circle cx="150" cy="200" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="204" text-anchor="middle" fill="white" font-size="7" font-weight="bold">CM</text>
+      <circle cx="240" cy="240" r="12" fill="#10b981" stroke="white" stroke-width="1.5"/>
+      <text x="240" y="244" text-anchor="middle" fill="white" font-size="7" font-weight="bold">RM</text>
+      <circle cx="150" cy="120" r="12" fill="#ef4444" stroke="white" stroke-width="1.5"/>
+      <text x="150" y="124" text-anchor="middle" fill="white" font-size="7" font-weight="bold">ST</text>
+      <line x1="150" y1="120" x2="150" y2="80" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <line x1="150" y1="350" x2="150" y2="200" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <line x1="150" y1="200" x2="150" y2="130" stroke="#f59e0b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <text x="170" y="170" fill="#f59e0b" font-size="9">CM前進</text>
+      <text x="170" y="100" fill="#ef4444" font-size="9">ST裏走り</text>
+    </svg>
+
+    <ol class="step-list">
+      <li>CBからCMへパス。STは<strong>下がって</strong>相手DFの前に出る</li>
+      <li>STが相手DFの注意を引いた隙に、CMが<strong>前に進む</strong></li>
+      <li>STが一気に<strong>前（ゴール側）へ走る</strong></li>
+      <li>CMからSTへ<strong>前へのパス</strong> → シュート！</li>
+    </ol>
+    <div class="kids-quote"><strong>声かけ：</strong>「下がれ！ 前進！ 走れ！ パス出して！」</div>
+    <div class="highlight"><strong>ポイント：</strong> STの「下がってから走る」動きがカギ。小学生でもオフサイドがないので積極的に走り込める。</div>
+  </div>
+
+  <!-- パターン3 -->
+  <div class="card">
+    <span class="tag">パターン3</span><span class="tag yellow">速攻</span>
+    <h3>奪った！ → 3人で前へ → ゴール</h3>
+    <p><strong>覚え方：</strong> 「取った！ 走れ！ ゴール！」</p>
+
+    <ol class="step-list">
+      <li>中盤でCMまたはLM/RMが相手から<strong>ボールを奪う</strong></li>
+      <li>奪った人は<strong>すぐ前を向いて</strong>パス（3秒以内！）</li>
+      <li>ST＋LM＋RMの<strong>3人が前に走る</strong></li>
+      <li>相手DFが2人しかいない → <strong>3対2</strong>で有利！</li>
+      <li>STへパス → STがLM or RMへ渡す → ゴール前でシュート</li>
+    </ol>
+    <div class="kids-quote"><strong>声かけ：</strong>「取った！ 前！ 走れ！ パス！ シュート！」</div>
+    <div class="highlight"><strong>ポイント：</strong> ためらうと相手が戻ってくる。奪った瞬間がチャンス！</div>
+  </div>
+
+  <!-- パターン4 -->
+  <div class="card">
+    <span class="tag">パターン4</span><span class="tag green">中央からシュート</span>
+    <h3>サイドの内側 → 前進 → シュート</h3>
+    <p><strong>覚え方：</strong> 「内側入って → 前進 → シュート」</p>
+
+    <ol class="step-list">
+      <li>LM/RMがサイドの<strong>少し内側</strong>でボールを受ける</li>
+      <li>LB/RBがサイドのラインまで上がる</li>
+      <li>LM/RMが<strong>ゴール方向にドリブル</strong></li>
+      <li>ゴール前まで行ったら<strong>シュート</strong> or STへパス</li>
+    </ol>
+    <div class="kids-quote"><strong>声かけ：</strong>「内側入れ！ 前進！ シュート！」</div>
+    <div class="highlight"><strong>ポイント：</strong> 8人制はゴールまで近い。前進してシュートする勇気を持とう。</div>
+  </div>
+
+  <!-- パターン5 -->
+  <div class="card">
+    <span class="tag">パターン5</span><span class="tag blue">サイドチェンジ</span>
+    <h3>左に集める → 右へ大きくパス → 1対1</h3>
+    <p><strong>覚え方：</strong> 「左に集めて → 右へ！ 行け！」</p>
+
+    <ol class="step-list">
+      <li>左サイド（LM+LB）にボールを集める → 相手が左に寄せてくる</li>
+      <li>CMまたはCBから<strong>右サイド（RM）へ大きくパス</strong></li>
+      <li>RMが相手DF1人と<strong>1対1</strong></li>
+      <li>RMが前にドリブル → ゴール前へクロス or シュート</li>
+      <li>ST+CMがゴール前で待つ</li>
+    </ol>
+    <div class="kids-quote"><strong>声かけ：</strong>「右！ 右！ 行け！ 1対1！」</div>
+    <div class="highlight"><strong>ポイント：</strong> 反対サイドに素早くパスを出す勇気が大事。RMがフリーになったらチャンス！</div>
+  </div>
+</section>
+
+<!-- ===== 攻撃テンプレート ===== -->
+<section id="templates">
+  <h2>📝 攻め方テンプレート — 試合前に決めておく</h2>
+  <p style="margin-bottom:1.5rem; color:var(--muted);">試合前にコーチが子どもたちに「今日はこの攻め方で行こう」と伝えるための型です。</p>
+
+  <div class="card">
+    <h3>テンプレート A：パスで攻める（上手いチーム向け）</h3>
+    <table class="comparison-table">
+      <tr><th>局面</th><th>やること</th><th>担当</th></tr>
+      <tr><td>GKから</td><td>CBへ。相手ST1人なので余裕を持って</td><td>GK → CB</td></tr>
+      <tr><td>自陣ビルド</td><td>LB/RBへ展開。三角形を作る</td><td>CB → LB/RB → CM</td></tr>
+      <tr><td>中盤</td><td>保持。相手が寄せたら反対サイドへ</td><td>CM → LM/RM</td></tr>
+      <tr><td>前線</td><td>サイドオーバーラップ or インサイドカット</td><td>LM/RM + LB/RB</td></tr>
+      <tr><td>決定打</td><td>クロス or スルーパス → ST</td><td>ST + CM</td></tr>
+    </table>
+    <p><strong>守り：</strong> 前からボールを奪りに行く。取ったらすぐ攻める</p>
+    <div class="kids-quote"><strong>子どもへの説明：</strong>「今日はパスを大切にして、みんなでボールを回そう！」</div>
+  </div>
+
+  <div class="card">
+    <h3>テンプレート B：守って速攻（守備が強いチーム向け）</h3>
+    <table class="comparison-table">
+      <tr><th>局面</th><th>やること</th><th>担当</th></tr>
+      <tr><td>GKから</td><td>ロングパスでST or サイドへ。無理にビルドしない</td><td>GK → ST/LM/RM</td></tr>
+      <tr><td>自陣</td><td>5-2-0でブロック。相手の攻撃を止める</td><td>全員</td></tr>
+      <tr><td>奪取時</td><td>3秒以内に前線へ。ST+LM+RM走り込み</td><td>CM → ST/LM/RM</td></tr>
+      <tr><td>前線</td><td>3対2 or 2対1。素早くゴール前</td><td>ST + LM/RM</td></tr>
+      <tr><td>決定打</td><td>STのシュート or 横パス → トゥータッチ</td><td>ST → LM/RM</td></tr>
+    </table>
+    <p><strong>守り：</strong> ゴール前で人数を固める。取ったら3秒で前へ</p>
+    <div class="kids-quote"><strong>子どもへの説明：</strong>「守って、取ったら走って前へ！ 3秒ルール！」</div>
+  </div>
+
+  <div class="card">
+    <h3>テンプレート C：バランス型（初めてのチーム・低学年向け）</h3>
+    <table class="comparison-table">
+      <tr><th>局面</th><th>やること</th><th>担当</th></tr>
+      <tr><td>GKから</td><td>CBへ。CBが状況を見てサイド or 中央</td><td>GK → CB → CM/LB/RB</td></tr>
+      <tr><td>自陣</td><td>無理しない。パスコースがなければキック</td><td>CB/GK</td></tr>
+      <tr><td>中盤</td><td>LM/RMに展開。1vs1を作る</td><td>CM → LM/RM</td></tr>
+      <tr><td>前線</td><td>サイドからクロス or 中央突破</td><td>LM/RM + ST</td></tr>
+      <tr><td>決定打</td><td>ゴール前に人数を送る（最低3人）</td><td>ST + CM + LM/RM</td></tr>
+    </table>
+    <p><strong>守り：</strong> 中盤で一緒に守る。取ったら前へ</p>
+    <div class="kids-quote"><strong>子どもへの説明：</strong>「パスを出して、出したら走る！ それだけでOK！」</div>
+  </div>
+
+  <div class="card">
+    <h3>🔄 状況別 攻め方の切り替え</h3>
+    <table class="comparison-table">
+      <tr><th>状況</th><th>推奨テンプレート</th><th>理由</th></tr>
+      <tr><td>リードしている</td><td>B（カウンター型）</td><td>守備を固め、カウンターで2点目</td></tr>
+      <tr><td>ビハインド</td><td>A（支配型）</td><td>ボールを保持し、相手を引き出す</td></tr>
+      <tr><td>同点・前半</td><td>C（バランス型）</td><td>相手を見て柔軟に対応</td></tr>
+      <tr><td>相手が守備的</td><td>A（支配型）</td><td>引き出してから攻める</td></tr>
+      <tr><td>相手が攻撃的</td><td>B（カウンター型）</td><td>裏スペースを突く</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 声かけ集 ===== -->
+<section id="voices">
+  <h2>📣 コーチの声かけ集 — そのまま使える</h2>
+  <p style="margin-bottom:1.5rem; color:var(--muted);">試合中・練習中にそのまま使える声かけです。短く、はっきり、元気よく！</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>攻撃の声かけ</h3>
+      <ul>
+        <li>「<strong>パス！ パス！</strong>」— ドリブルばかりさせない</li>
+        <li>「<strong>出したら走れ！</strong>」— パス＆ムーブの基本</li>
+        <li>「<strong>広げろ！</strong>」— サイドに散らばる</li>
+        <li>「<strong>前！ 前！</strong>」— 前に進む</li>
+        <li>「<strong>シュート！</strong>」— チャンスなら迷わず蹴る</li>
+        <li>「<strong>クロス！</strong>」— サイドからゴール前へ</li>
+        <li>「<strong>1対1！ 行け！</strong>」— ドリブルチャンス</li>
+        <li>「<strong>右！ / 左！</strong>」— サイドチェンジ</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>守備の声かけ</h3>
+      <ul>
+        <li>「<strong>寄せろ！</strong>」— 相手に近づく</li>
+        <li>「<strong>一緒に行け！</strong>」— 複数人でプレス</li>
+        <li>「<strong>取れ！</strong>」— ボールを奪う</li>
+        <li>「<strong>ライン！</strong>」— 一列にそろえる</li>
+        <li>「<strong>マーク！</strong>」— 相手選手をマーク</li>
+        <li>「<strong>下がれ！</strong>」— 守備位置に戻る</li>
+        <li>「<strong>カバー！</strong>」— 味方の裏を守る</li>
+        <li>「<strong>取った！ 前！</strong>」— 奪取後すぐ攻撃</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>全体の声かけ</h3>
+      <ul>
+        <li>「<strong>声出せ！</strong>」— コミュニケーション</li>
+        <li>「<strong>こっち！ こっち！</strong>」— パスを求める</li>
+        <li>「<strong>ナイス！</strong>」— 良いプレーを褒める</li>
+        <li>「<strong>次行こう！</strong>」— ミス後の切り替え</li>
+        <li>「<strong>走れ！</strong>」— ボールを持っていなくても走る</li>
+        <li>「<strong>見て！ 見て！</strong>」— 周りを見る</li>
+        <li>「<strong>仲間！ 仲間！</strong>」— 味方を見る</li>
+        <li>「<strong>楽しめ！</strong>」— 最後に忘れずに</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>ポジション別の声かけ</h3>
+      <table class="comparison-table">
+        <tr><th>ポジ</th><th>声かけ例</th></tr>
+        <tr><td>GK</td><td>「上！ 上！」「右！」「左！」（指示）</td></tr>
+        <tr><td>CB</td><td>「落ち着け！」「前出して！」</td></tr>
+        <tr><td>LB/RB</td><td>「上がれ！」「戻れ！」</td></tr>
+        <tr><td>CM</td><td>「前見て！」「サイド行け！」</td></tr>
+        <tr><td>LM/RM</td><td>「行け！」「クロス！」「戻れ！」</td></tr>
+        <tr><td>ST</td><td>「走れ！」「下がれ！」「シュート！」</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⚠️ 声かけのコツ（コーチ向け）</h3>
+    <ul>
+      <li><strong>短く：</strong> 1文10文字以内が理想。「パス！ 走れ！」</li>
+      <li><strong>具体的に：</strong> 「頑張れ」より「前の人にパス！」</li>
+      <li><strong>否定的より肯定的：</strong> 「ダメ」より「次行こう！」</li>
+      <li><strong>名前を呼ぶ：</strong> 「田中、パス！」の方が伝わる</li>
+      <li><strong>試合中は30秒以内：</strong> 長い説明はハーフタイムに</li>
+      <li><strong>褒める：</strong> 良いプレーは必ず「ナイス！」</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== セットプレー ===== -->
+<section id="setpiece">
+  <h2>🎯 セットプレー</h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>コーナーキック（CK）攻撃</h3>
+      <h4>パターンA：ニアファー</h4>
+      <ul>
+        <li><strong>蹴る：</strong> LM or RM</li>
+        <li><strong>ニア：</strong> ST（ヘディング or フリック）</li>
+        <li><strong>ファー：</strong> CB（ヘディング）</li>
+        <li><strong>外：</strong> CM（2ndボール）</li>
+      </ul>
+      <h4>パターンB：ショートCK</h4>
+      <ul>
+        <li>CKをショートパス → 1vs1 or 2vs1を作る</li>
+        <li>8人制はゴールまで近いので有効</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>フリーキック（FK）攻撃</h3>
+      <h4>直接FK</h4>
+      <ul>
+        <li>ゴールから18m以内 → シュート</li>
+        <li>壁の上を越える or 壁の隙間を狙う</li>
+      </ul>
+      <h4>間接FK</h4>
+      <ul>
+        <li>LM/RMが蹴り、ST+CBがゴール前</li>
+        <li>8人制は人数が少ない → 全員ゴール前に入ってもOK</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>ゴールキック</h3>
+      <ul>
+        <li><strong>ショート：</strong> CBへ。ビルドアップ開始（支配型）</li>
+        <li><strong>ロング：</strong> ST or サイドへ直接（カウンター型）</li>
+        <li>8人制はGKのパス精度が試合を左右する</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>スローイン</h3>
+      <ul>
+        <li>相手ゴール側 → ST+CMをゴール前に。ロングスロー</li>
+        <li>自陣サイド → CB/CBへ。保持してビルド</li>
+        <li>8人制はスローインの距離が長い → 武器にできる</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 練習メニュー ===== -->
+<section id="training">
+  <h2>🏃 小学生向け 練習メニュー</h2>
+
+  <div class="card">
+    <h3>練習の基本ルール（コーチ向け）</h3>
+    <ul>
+      <li><strong>1つの練習は15分以内</strong> — 小学生の集中力に合わせる</li>
+      <li><strong>ボール触る時間を最大化</strong> — 列に並んで待たせない</li>
+      <li><strong>ゲーム形式を多めに</strong> — 楽しさが一番</li>
+      <li><strong>全員同じポジションを経験</strong> — FWばかりやGKばかりにしない</li>
+      <li><strong>最後に必ず試合形式</strong> — 練習の成果を試す時間</li>
+    </ul>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>① パス＆走る（10分）</h3>
+      <ul>
+        <li>3人1組で三角パス</li>
+        <li>「パス → 走る → 受ける」を繰り返す</li>
+        <li>1タッチパスに挑戦（慣れたら）</li>
+        <li><strong>声かけ：</strong>「出したら走れ！」</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>② サイド攻撃（10分）</h3>
+      <ul>
+        <li>LM+LBの2人でサイドを攻める</li>
+        <li>LBが前に上がるタイミング合わせ</li>
+        <li>ゴール前へクロス → STがシュート</li>
+        <li><strong>声かけ：</strong>「前上がれ！ クロス！」</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>③ 3対2 速攻（10分）</h3>
+      <ul>
+        <li>中盤でボールを置いて、奪いに行く</li>
+        <li>奪ったら3人で前へ走る</li>
+        <li>3秒以内にゴール前まで</li>
+        <li><strong>声かけ：</strong>「取った！ 走れ！」</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>④ ミニゲーム 4対4（15分）</h3>
+      <ul>
+        <li>小さいコートで4対4（GK除く）</li>
+        <li>今日の攻撃パターン1つを意識</li>
+        <li>得点したら「どうやって点取った？」と聞く</li>
+        <li><strong>声かけ：</strong>「ナイス！ 次も行こう！」</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>⑤ 8人制ゲーム（15分）</h3>
+      <ul>
+        <li>実際の3-3-1で対戦</li>
+        <li>テンプレートA/B/Cを交代で試す</li>
+        <li>1本10分 × 2本</li>
+        <li>ハーフタイムに1分だけ振り返り</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>⑥ シュート練習（10分）</h3>
+      <ul>
+        <li>ゴール前からシュート（近距離から）</li>
+        <li>両足で蹴れるように（利き足だけに偏らない）</li>
+        <li>「迷わず蹴る」ことを褒める</li>
+        <li><strong>声かけ：</strong>「シュート！ ナイス！」</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>試合前ミーティング（3分・子ども向け）</h3>
+    <ol>
+      <li>「今日の作戦は <strong>A / B / C</strong> のどれか？」（1つだけ）</li>
+      <li>「攻撃パターンは <strong>○番</strong> を使おう！」（1つだけ）</li>
+      <li>「CK/FKは <strong>名前</strong> が蹴るよ」</li>
+      <li>「守るときは <strong>みんなで下がって</strong> 人数をそろえよう」</li>
+      <li>「<strong>声を出して、楽しもう！</strong>」</li>
+    </ol>
+    <div class="kids-quote"><strong>コツ：</strong> 指示は3つ以内。多すぎると子どもは覚えられない。</div>
+  </div>
+
+  <div class="card">
+    <h3>試合後の振り返り（3分・子ども向け）</h3>
+    <ol>
+      <li>「今日 <strong>良かったこと</strong> は？」（子どもに聞く）</li>
+      <li>「<strong>ナイスプレー</strong> 賞」（1人ずつ具体的に褒める）</li>
+      <li>「次は <strong>ここを意識</strong> しよう」（1つだけ改善点）</li>
+      <li>「お疲れさま！ サッカー楽しかった？」</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>小学生 8人制サッカー 3-3-1 フォーメーション戦術ガイド</p>
+  <p>コーチ・保護者向け | Jリーグの考え方を小学生レベルに応用 | 2026</p>
+</footer>
+
+</body>
+</html>

@@ -3,110 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ひょうか｜ゲーム鯖募集｜にじさんじ × CR</title>
-  <meta name="description" content="にじさんじとCrazy Raccoon好きが集うDiscordゲーム鯖の募集ページ。VALORANT・APEX・OW・マインクラフト・スプラ3など一緒に遊びましょう。" />
+  <title>ひょうか｜ゲーム鯖募集</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div class="atmosphere" aria-hidden="true">
-    <div class="orb orb--mint"></div>
-    <div class="orb orb--rose"></div>
-    <div class="grid-glow"></div>
-  </div>
-
-  <header class="hero">
-    <p class="hero__kicker">Discord Game Server</p>
-    <h1 class="hero__brand">ひょうか</h1>
-    <p class="hero__lead">にじさんじ × Crazy Raccoon 好きのゲーム鯖</p>
-    <p class="hero__sub">配信・大会・イベントの話も歓迎。楽しく一緒に遊びましょう。</p>
-    <div class="hero__cta">
-      <a class="btn btn--primary" href="#join">鯖に参加する</a>
-      <a class="btn btn--ghost" href="#profile">プロフィールを見る</a>
-    </div>
-  </header>
-
-  <main>
-    <section id="profile" class="section section--profile">
-      <h2 class="section__title">PROFILE</h2>
-      <p class="section__text">25歳 / 関西 / 男性</p>
-      <p class="section__text">見ていただきありがとうございます！推し活はまだ新参者ですが、CRやにじさんじが好きなので、ゲームだけでなく配信や大会、イベントなどの話も一緒に楽しめたらと思っています。</p>
-      <ul class="meta-list">
-        <li><span>推し組織</span>Crazy Raccoon / にじさんじ</li>
-        <li><span>雰囲気</span>楽しさ優先・雑談OK</li>
-      </ul>
-    </section>
-
-    <section class="section">
-      <h2 class="section__title">推し・好きな配信者</h2>
-      <p class="section__text">にじさんじとCRを中心に応援しています。</p>
-      <div class="tag-board">
-        <div class="tag-group">
-          <h3 class="tag-group__label">Crazy Raccoon</h3>
-          <ul class="tag-list">
-            <li>だるまいずごっどさん</li>
-          </ul>
-        </div>
-        <div class="tag-group">
-          <h3 class="tag-group__label">にじさんじ</h3>
-          <ul class="tag-list">
-            <li>酒寄 颯馬さん</li>
-            <li>七瀬すず菜さん</li>
-            <li>石神 のぞみさん</li>
-            <li>伊波 ライさん</li>
-            <li>nqrseさん</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2 class="section__title">GAME</h2>
-      <p class="section__text">enjoy勢なので楽しくできたらと思います。よかったら一緒にゲームしましょう。</p>
-      <ul class="game-list">
-        <li>VALORANT</li>
-        <li>APEX</li>
-        <li>Overwatch</li>
-        <li>Minecraft</li>
-        <li>スプラトゥーン3</li>
-      </ul>
-    </section>
-
-    <section class="section section--rules">
-      <h2 class="section__title">お断り</h2>
-      <p class="section__text">以下に該当する方はご遠慮ください。</p>
-      <ul class="rule-list">
-        <li>常識のない言動をする方</li>
-        <li>誹謗中傷・荒らし行為をする方</li>
-        <li>年齢詐称などルールを守れない方</li>
-      </ul>
-    </section>
-
-    <section id="join" class="section section--join">
-      <h2 class="section__title">参加方法</h2>
-      <p class="section__text">最後まで読んでいただきありがとうございます。タグ反応された方からリプにてお迎えします。下のボタンからもDiscordへどうぞ。</p>
-      <a class="btn btn--primary btn--wide" href="https://discord.gg/" target="_blank" rel="noopener noreferrer">Discordで参加する</a>
-      <p class="join-note">※招待リンクは運用に合わせて差し替えてください</p>
-    </section>
+  <main class="card">
+    <p class="kicker">Discord Game Server</p>
+    <h1>ひょうか</h1>
+    <p class="copy">にじさんじ×CR好きのゲーム鯖募集！VALORANT・APEX・スプラ等enjoy勢歓迎。配信・大会の話も一緒に楽しもう！</p>
+    <a class="btn" href="https://discord.gg/" target="_blank" rel="noopener noreferrer">Discordで参加</a>
+    <p class="note">※招待リンクは差し替えてください</p>
   </main>
-
-  <footer class="footer">
-    <p>ひょうか · ゲーム鯖募集</p>
-    <a href="https://lit.link/hyouka_1146" target="_blank" rel="noopener noreferrer">lit.link プロフィール</a>
-  </footer>
-
-  <script>
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("is-visible");
-        });
-      },
-      { threshold: 0.16 }
-    );
-    document.querySelectorAll(".section").forEach((el) => observer.observe(el));
-  </script>
 </body>
 </html>
